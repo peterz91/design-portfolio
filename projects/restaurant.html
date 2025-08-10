@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Vista - Fine Dining Experience</title>
+    <link rel="stylesheet" href="../css/restaurant.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="navbar-logo"><img src="../images/bella-vista-txt-logo.svg" alt="Bella Vista logo" class="nav-logo-img"></div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#reservations" class="nav-link">Reservations</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-image" id="hero-image"></div>
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="logo-section">
+                    <img src="../images/bella-vista-logo.svg" alt="Bella Vista logo" class="hero-logo-img">
+                </div>
+                <h1 class="hero-title">Authentic Italian Cuisine in the Heart of the City</h1>
+                <a href="#reservations" class="cta-button">Make Reservation</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-categories">
+                <button class="category-btn active" onclick="filterMenu('all')">All</button>
+                <button class="category-btn" onclick="filterMenu('appetizers')">Appetizers</button>
+                <button class="category-btn" onclick="filterMenu('mains')">Main Courses</button>
+                <button class="category-btn" onclick="filterMenu('desserts')">Desserts</button>
+                <button class="category-btn" onclick="filterMenu('drinks')">Drinks</button>
+            </div>
+            
+            <div class="menu-grid" id="menu-grid">
+                <!-- Menu items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Our Story</h2>
+                    <p>Founded in 1985 by Chef Marco Rossi, Bella Vista has been serving authentic Italian cuisine for over three decades. Our commitment to using fresh, locally-sourced ingredients and traditional cooking methods ensures every dish tells a story of Italian heritage.</p>
+                    <br>
+                    <p>Our talented team of chefs brings passion and creativity to every plate, creating memorable dining experiences that transport you straight to the heart of Italy.</p>
+                    
+                    <div class="restaurant-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">38</span>
+                            <span class="stat-label">Years of Excellence</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Signature Dishes</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5★</span>
+                            <span class="stat-label">Average Rating</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <div class="chef-showcase">
+                        <div class="chef-card">
+                            <div class="chef-photo">
+                                <img src="../images/chef-marco-rossi-alternate.webp" alt="Chef Marco Rossi">
+                            </div>
+                            <h3>Chef Marco Rossi</h3>
+                            <p>Head Chef & Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservations" class="reservations-section">
+        <div class="container">
+            <h2 class="section-title">Make a Reservation</h2>
+            <p class="section-subtitle">Reserve your table for an unforgettable dining experience</p>
+            
+            <form class="reservation-form" id="reservationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guests">Number of Guests</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select guests</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                            <option value="6">6 Guests</option>
+                            <option value="7">7+ Guests</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Preferred Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="time">Preferred Time</label>
+                        <select id="time" name="time" required>
+                            <option value="">Select time</option>
+                            <option value="17:00">5:00 PM</option>
+                            <option value="17:30">5:30 PM</option>
+                            <option value="18:00">6:00 PM</option>
+                            <option value="18:30">6:30 PM</option>
+                            <option value="19:00">7:00 PM</option>
+                            <option value="19:30">7:30 PM</option>
+                            <option value="20:00">8:00 PM</option>
+                            <option value="20:30">8:30 PM</option>
+                            <option value="21:00">9:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="special-requests">Special Requests (Optional)</label>
+                    <textarea id="special-requests" name="specialRequests" rows="4" placeholder="Any dietary restrictions, special occasions, or other requests..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    <span class="btn-text">Reserve Table</span>
+                    <span class="btn-loader"></span>
+                </button>
+            </form>
+            
+            <div class="availability-info">
+                <h3>Availability Information</h3>
+                <p>For same-day reservations, please call us at <strong>(555) 123-4567</strong></p>
+                <p>Reservations available <strong>Tuesday - Sunday, 5:00 PM - 9:30 PM</strong></p>
+                <p>For parties of 8 or more, please call for special arrangements</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2 class="section-title">Visit Us</h2>
+    
+                        <div class="info-item">
+                            <span class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </span>
+                            <div>
+                                <h4>Address</h4>
+                                <p>123 Via Marina<br>Procida Island, Naples 80079<br>Italy</p>
+                            </div>
+                        </div>
+            
+                        <div class="info-item">
+                            <span class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </span>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>(555) 123-4567</p>
+                            </div>
+                        </div>
+            
+                        <div class="info-item">
+                            <span class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </span>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@bellavista.com</p>
+                            </div>
+                        </div>
+            
+                        <div class="info-item">
+                            <span class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12,6 12,12 16,14"></polyline>
+                                </svg>
+                            </span>
+                            <div>
+                                <h4>Hours</h4>
+                                <p>Tuesday - Sunday<br>5:00 PM - 10:00 PM<br><em>Closed Mondays</em></p>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-content">
+                <div class="success-icon">✅</div>
+                <h3>Reservation Confirmed!</h3>
+                <p id="confirmationMessage">Thank you for your reservation. We'll send you a confirmation email shortly.</p>
+                <button class="btn-primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/restaurant.js"></script>
+</body>
+</html>
