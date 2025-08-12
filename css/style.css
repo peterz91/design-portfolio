@@ -44,14 +44,14 @@ body {
 .profile-section {
     display: flex;
     align-items: flex-start;
-    gap: 24px;
+    gap: 1px;
     flex-shrink: 0;
-    margin-top: 193.5px; /* Align with headline */
+    margin-top: 115.5px; /* Align with headline */
 }
 
 .profile-image {
-    width: 216px;
-    height: 81px;
+    width: 163px;
+    height: 163px;
     background: url('../images/profile-picture-square.jpg') center/cover no-repeat;
     border-radius: 0px;
     flex-shrink: 0;
@@ -59,7 +59,7 @@ body {
 
 .social-icons {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 1px;
     align-self: flex-start;
 }
@@ -105,6 +105,10 @@ body {
     background: var(--text-primary);
     border-radius: 12px;
     transition: all 0.3s ease;
+}
+
+.toggle-slider:hover {
+    background: var(--blue-primary);
 }
 
 .toggle-circle {
@@ -163,6 +167,18 @@ body {
     max-width: 100%;
 }
 
+.description .email-link {
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.description .email-link:hover {
+    color: var(--blue-primary);
+}
+
 /* Project Content Section */
 .project-content {
     max-width: 1184px;
@@ -181,7 +197,7 @@ body {
     align-items: flex-start;
     gap: 24px;
     flex-shrink: 0;
-    width: 320px;
+    width: 204px;
     background: transparent;
 }
 
@@ -232,6 +248,10 @@ body {
     font-weight: 200;
 }
 
+.nav-tab:not(.active):hover{
+    color: var(--blue-primary);
+}
+
 /* Project Description */
 .project-description {
     font-family: 'Geologica', sans-serif;
@@ -249,6 +269,10 @@ body {
     color: var(--text-primary);
     text-decoration: underline;
     cursor: pointer;
+}
+
+.project-description .live-demo:hover {
+    color: var(--blue-primary);
 }
 
 /* UNIFIED PROJECT GALLERY */
