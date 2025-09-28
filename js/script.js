@@ -1,5 +1,99 @@
 // UNIFIED PROJECT DATA STRUCTURE
 const projects = {
+    pricecheck: {
+        title: "Uštedi - Price Check Web App",
+        description: "A practical web application for finding the store with cheapest prices based on your shopping list.",
+        demoUrl: null, // Coming soon
+        items: [
+            { 
+                type: 'hero', 
+                src: 'images/ustedi-hero-thumb.webp',
+                fullRes: 'images/ustedi-hero-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/ustedi-screens-lht-thumb.webp',
+                fullRes: 'images/ustedi-screens-lht-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/ustedi-screens-drk-thumb.webp',
+                fullRes: 'images/ustedi-screens-drk-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/ustedi-wireframes-thumb.webp',
+                fullRes: 'images/ustedi-wireframes-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/ustedi-inuse-1-thumb.webp',
+                fullRes: 'images/ustedi-inuse-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/ustedi-inuse-2-thumb.webp',
+                fullRes: 'images/ustedi-inuse-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/ustedi-logo-main-thumb.webp',
+                fullRes: 'images/ustedi-logo-main-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/ustedi-logo-alternate-thumb.webp',
+                fullRes: 'images/ustedi-logo-alternate-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/ustedi-logo-variants-thumb.webp',
+                fullRes: 'images/ustedi-logo-variants-full.webp'
+            },
+        ]
+    },
+    skyaccess_redesign: {
+        title: "SkyAccess Website Redesign",
+        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
+        demoUrl: null, // Coming soon
+        items: [
+            { 
+                type: 'hero', 
+                src: 'images/skyaccess-hero-thumb.webp',
+                fullRes: 'images/skyaccess-hero-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-1-thumb.webp',
+                fullRes: 'images/skyaccess-original-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-1-thumb.webp',
+                fullRes: 'images/skyaccess-redesign-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-2-thumb.webp',
+                fullRes: 'images/skyaccess-original-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-2-thumb.webp',
+                fullRes: 'images/skyaccess-redesign-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-3-thumb.webp',
+                fullRes: 'images/skyaccess-original-3-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-3-thumb.webp',
+                fullRes: 'images/skyaccess-redesign-3-full.webp'
+            },
+        ]
+    },
     restaurant: {
         title: "Restaurant website",
         description: "Designed a vibrant website and logo for a fictional restaurant in Procida, Italy, drawing inspiration from the island's iconic colorful houses that cascade down to the Mediterranean coastline.",
@@ -7,47 +101,193 @@ const projects = {
         items: [
             { 
                 type: 'hero', 
-                src: 'images/bella-vista-showcase-hero.webp' 
-            },
-            { 
-                type: 'desktop-iframe',
-                desktop: 'images/restaurant-menu-desktop.webp',
-                iframe: './projects/restaurant.html'
+                src: 'images/bella-vista-hero-thumb.webp',
+                fullRes: 'images/bella-vista-hero-full.webp' 
             },
             { 
                 type: 'desktop', 
-                src: 'images/restaurant-our-story-desktop.webp' 
+                src: 'images/bella-vista-whole-page.webp',
+                fullRes: 'images/bella-vista-whole-page-full.webp'
             },
             { 
                 type: 'desktop', 
-                src: 'images/restaurant-form-desktop.webp' 
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/restaurant-contact-desktop.webp' 
-            }
-        ]
-    },
-    pricecheck: {
-        title: "Price check web app",
-        description: "A practical web application for finding the store with cheapest prices based on your shopping list.",
-        demoUrl: null, // Coming soon
-        items: [
-            {
-                type: 'mobile-grid',
-                items: [
-                    'images/pricecheck-mobile-1.webp',
-                    'images/pricecheck-mobile-2.webp',
-                    'images/pricecheck-mobile-3.webp',
-                    'images/pricecheck-mobile-4.webp'
-                ]
+                src: 'images/bella-vista-mobile-screens-thumb.webp',
+                fullRes: 'images/bella-vista-mobile-screens-full.webp'
             }
         ]
     }
+   /*  test_project: {
+        title: "Test Project",
+        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
+        demoUrl: null, // Coming soon
+        items: [
+            { 
+                type: 'hero', 
+                src: 'images/skyaccess-hero.webp',
+                fullRes: 'images/skyaccess-hero.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-1.webp',
+                fullRes: 'images/skyaccess-original-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-1.webp',
+                fullRes: 'images/skyaccess-redesign-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-2.webp',
+                fullRes: 'images/skyaccess-original-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-2.webp',
+                fullRes: 'images/skyaccess-redesign-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-3.webp',
+                fullRes: 'images/skyaccess-original-3-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-3.webp',
+                fullRes: 'images/skyaccess-redesign-3-full.webp'
+            },
+        ]
+    },
+    test_project2: {
+        title: "Test Project 2",
+        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
+        demoUrl: null, // Coming soon
+        items: [
+            { 
+                type: 'hero', 
+                src: 'images/skyaccess-hero.webp',
+                fullRes: 'images/skyaccess-hero.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-1.webp',
+                fullRes: 'images/skyaccess-original-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-1.webp',
+                fullRes: 'images/skyaccess-redesign-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-2.webp',
+                fullRes: 'images/skyaccess-original-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-2.webp',
+                fullRes: 'images/skyaccess-redesign-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-3.webp',
+                fullRes: 'images/skyaccess-original-3-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-3.webp',
+                fullRes: 'images/skyaccess-redesign-3-full.webp'
+            },
+        ]
+    },
+    test_project3: {
+        title: "Test Project 3 with some more text in the name",
+        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
+        demoUrl: null, // Coming soon
+        items: [
+            { 
+                type: 'hero', 
+                src: 'images/skyaccess-hero.webp',
+                fullRes: 'images/skyaccess-hero.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-1.webp',
+                fullRes: 'images/skyaccess-original-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-1.webp',
+                fullRes: 'images/skyaccess-redesign-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-2.webp',
+                fullRes: 'images/skyaccess-original-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-2.webp',
+                fullRes: 'images/skyaccess-redesign-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-3.webp',
+                fullRes: 'images/skyaccess-original-3-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-3.webp',
+                fullRes: 'images/skyaccess-redesign-3-full.webp'
+            },
+        ]
+    },
+    test_project4: {
+        title: "Test Project 2",
+        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
+        demoUrl: null, // Coming soon
+        items: [
+            { 
+                type: 'hero', 
+                src: 'images/skyaccess-hero.webp',
+                fullRes: 'images/skyaccess-hero.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-1.webp',
+                fullRes: 'images/skyaccess-original-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-1.webp',
+                fullRes: 'images/skyaccess-redesign-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-2.webp',
+                fullRes: 'images/skyaccess-original-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-2.webp',
+                fullRes: 'images/skyaccess-redesign-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-original-3.webp',
+                fullRes: 'images/skyaccess-original-3-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/skyaccess-redesign-3.webp',
+                fullRes: 'images/skyaccess-redesign-3-full.webp'
+            },
+        ]
+    }  */
 };
 
-// Current active project
-let currentProject = 'restaurant';
+// Current active project - dynamically set to first project
+let currentProject = Object.keys(projects)[0];
 
 // THEME FUNCTIONALITY
 function toggleTheme() {
@@ -68,65 +308,36 @@ function initializeTheme() {
 function createGalleryItem(item) {
     switch (item.type) {
         case 'hero':
+            // Use full-res image for gallery display on screens > 1024px
+            const heroGallerySrc = window.innerWidth > 1024 ? (item.fullRes || item.src) : item.src;
+            
             return `
                 <div class="gallery-item hero">
-                    <img src="${item.src}" alt="Project hero image" loading="lazy">
+                    <a href="${item.fullRes || item.src}" 
+                       class="clickable-image"
+                       data-pswp-width="2560" 
+                       data-pswp-height="1440"
+                       target="_blank">
+                        <img src="${heroGallerySrc}" alt="Project hero image" loading="lazy">
+                    </a>
                 </div>
             `;
         
         case 'desktop':
+            // Desktop always uses thumbnail in gallery, full-res in PhotoSwipe
             return `
                 <div class="gallery-item desktop">
-                    <img src="${item.src}" alt="Desktop screenshot" loading="lazy">
-                </div>
-            `;
-        
-        case 'desktop-iframe':
-            return `
-                <div class="gallery-desktop-iframe">
-                    <div class="gallery-item desktop">
-                        <img src="${item.desktop}" alt="Desktop screenshot" loading="lazy">
-                    </div>
-                    <div class="gallery-item iframe">
-                        <div class="scroll-indicator">
-                            <span class="scroll-text">Scroll down</span>
-                            <div class="scroll-mouse">
-                                <div class="scroll-wheel"></div>
-                            </div>
-                        </div>
-                        <iframe src="${item.iframe}" sandbox="allow-same-origin" scrolling="yes" loading="lazy"></iframe>
-                    </div>
-                </div>
-            `;
-        
-        case 'mobile-grid':
-            const mobileItems = item.items.map(src => `
-                <div class="gallery-item mobile">
-                    <img src="${src}" alt="Mobile screenshot" loading="lazy" onerror="this.style.display='none'; console.warn('Image not found: ${src}');">
-                </div>
-            `).join('');
-            
-            return `
-                <div class="gallery-mobile-grid">
-                    ${mobileItems}
-                </div>
-            `;
-        
-        case 'iframe':
-            return `
-                <div class="gallery-item iframe">
-                    <div class="scroll-indicator">
-                        <span class="scroll-text">Scroll down</span>
-                        <div class="scroll-mouse">
-                            <div class="scroll-wheel"></div>
-                        </div>
-                    </div>
-                    <iframe src="${item.src}" sandbox="allow-same-origin" scrolling="yes" loading="lazy"></iframe>
+                    <a href="${item.fullRes || item.src}" 
+                       class="clickable-image"
+                       data-pswp-width="3000" 
+                       data-pswp-height="2000"
+                       target="_blank">
+                        <img src="${item.src}" alt="Desktop screenshot" loading="lazy">
+                    </a>
                 </div>
             `;
         
         default:
-            console.warn('Unknown gallery item type:', item.type);
             return '';
     }
 }
@@ -145,7 +356,7 @@ function renderProject(projectKey) {
     if (descriptionEl) {
         const demoLink = project.demoUrl 
             ? `<span class="live-demo" onclick="openDemo('${projectKey}')">Live demo.</span>`
-            : '<span style="color: var(--text-secondary); font-style: italic;">Coming soon!</span>';
+            : '';
         
         descriptionEl.innerHTML = `${project.description} ${demoLink}`;
     }
@@ -177,6 +388,58 @@ function generateTabs() {
         `).join('');
     
     tabsContainer.innerHTML = tabsHTML;
+    
+    // Initialize arrow navigation after tabs are generated
+    initArrowNavigation();
+}
+
+// Arrow navigation functionality
+function initArrowNavigation() {
+    const tabsContainer = document.querySelector('.nav-tabs');
+    const leftArrow = document.getElementById('tabArrowLeft');
+    const rightArrow = document.getElementById('tabArrowRight');
+    
+    if (!tabsContainer || !leftArrow || !rightArrow) return;
+    
+    const scrollAmount = 200; // How much to scroll per click
+    
+    function updateArrowVisibility() {
+        const { scrollLeft, scrollWidth, clientWidth } = tabsContainer;
+        
+        // Show left arrow when scrolled to the right
+        if (scrollLeft > 0) {
+            leftArrow.classList.add('visible');
+        } else {
+            leftArrow.classList.remove('visible');
+        }
+        
+        // Show right arrow when there's more content to scroll
+        if (scrollLeft < scrollWidth - clientWidth - 5) { // -5px buffer
+            rightArrow.classList.add('visible');
+        } else {
+            rightArrow.classList.remove('visible');
+        }
+    }
+    
+    // Arrow click handlers
+    leftArrow.addEventListener('click', () => {
+        tabsContainer.scrollLeft -= scrollAmount;
+        setTimeout(updateArrowVisibility, 100); // Update after scroll animation
+    });
+    
+    rightArrow.addEventListener('click', () => {
+        tabsContainer.scrollLeft += scrollAmount;
+        setTimeout(updateArrowVisibility, 100); // Update after scroll animation
+    });
+    
+    // Update arrows on manual scroll (mouse wheel, trackpad)
+    tabsContainer.addEventListener('scroll', updateArrowVisibility);
+    
+    // Update arrows on window resize
+    window.addEventListener('resize', updateArrowVisibility);
+    
+    // Initial arrow state
+    setTimeout(updateArrowVisibility, 100); // Small delay to ensure layout is complete
 }
 
 function switchProject(projectKey) {
@@ -257,6 +520,39 @@ function initScrollIndicators() {
     });
 }
 
+function addMobileTouchFeedback() {
+    // Only apply on touch devices
+    if ('ontouchstart' in window) {
+        
+        // Arrow buttons feedback
+        document.querySelectorAll('.nav-arrow').forEach(arrow => {
+            arrow.addEventListener('touchend', function() {
+                this.style.background = 'var(--blue-primary)';
+                this.style.borderColor = 'var(--bg-secondary)';
+                
+                setTimeout(() => {
+                    this.style.background = '';
+                    this.style.borderColor = '';
+                }, 300);
+            });
+        });
+        
+        // Theme toggle feedback
+        const themeToggle = document.querySelector('.theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('touchend', function() {
+                const slider = this.querySelector('.toggle-slider');
+                slider.style.background = 'var(--blue-primary)';
+                
+                setTimeout(() => {
+                    slider.style.background = '';
+                }, 300);
+            });
+        }
+    }
+}
+
+
 // INITIALIZATION
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize theme
@@ -282,6 +578,14 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleTheme();
         }
     });
+
+    window.addEventListener('resize', function() {
+    // Re-render gallery if screen crosses the 1024px threshold
+    const currentProject = getCurrentProject(); // You may need to track this
+    renderProject(currentProject);
+    });
+
+    addMobileTouchFeedback();
 });
 
 // UTILITY FUNCTIONS FOR FUTURE EXPANSION
