@@ -52,6 +52,48 @@ const projects = {
             },
         ]
     },
+    stmnt_studios: {
+        title: "STMNT Studios Redesign",
+        description: "A website redesign for a video production company in San Francisco. The client wanted more leads from the website so the focus was on CRO principles and best practices.",
+        demoUrl: null,
+        items: [
+            { 
+                type: 'hero', 
+                src: 'images/stmnt-hero-thumb.webp',
+                fullRes: 'images/stmnt-hero-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/stmnt-original-1-thumb.webp',
+                fullRes: 'images/stmnt-original-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/stmnt-redesign-1-thumb.webp',
+                fullRes: 'images/stmnt-redesign-1-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/stmnt-original-2-thumb.webp',
+                fullRes: 'images/stmnt-original-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/stmnt-redesign-2-thumb.webp',
+                fullRes: 'images/stmnt-redesign-2-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/stmnt-redesign-3-thumb.webp',
+                fullRes: 'images/stmnt-redesign-3-full.webp'
+            },
+            { 
+                type: 'desktop', 
+                src: 'images/stmnt-redesign-mobile-thumb.webp',
+                fullRes: 'images/stmnt-redesign-mobile-full.webp'
+            },
+        ]
+    },
     skyaccess_redesign: {
         title: "SkyAccess Website Redesign",
         description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
