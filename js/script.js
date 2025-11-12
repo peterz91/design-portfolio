@@ -1,7 +1,7 @@
 // UNIFIED PROJECT DATA STRUCTURE
 const projects = {
     pricecheck: {
-        title: "Uštedi - Price Check Web App",
+        title: "Uštedi App",
         description: "A practical web application for finding the store with cheapest prices based on your shopping list.",
         demoUrl: null, // Coming soon
         items: [
@@ -53,7 +53,7 @@ const projects = {
         ]
     },
     stmnt_studios: {
-        title: "STMNT Studios Redesign",
+        title: "STMNT Studios",
         description: "A website redesign for a video production company in San Francisco. The client wanted more leads from the website so the focus was on CRO principles and best practices.",
         demoUrl: null,
         items: [
@@ -95,7 +95,7 @@ const projects = {
         ]
     },
     skyaccess_redesign: {
-        title: "SkyAccess Website Redesign",
+        title: "SkyAccess Website",
         description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
         demoUrl: null, // Coming soon
         items: [
