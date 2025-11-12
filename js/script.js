@@ -135,8 +135,8 @@ const projects = {
                 fullRes: 'images/skyaccess-redesign-3-full.webp'
             },
         ]
-    },
-    restaurant: {
+    }
+    /* restaurant: {
         title: "Restaurant website",
         description: "Designed a vibrant website and logo for a fictional restaurant in Procida, Italy, drawing inspiration from the island's iconic colorful houses that cascade down to the Mediterranean coastline.",
         demoUrl: "./projects/restaurant.html",
@@ -157,7 +157,7 @@ const projects = {
                 fullRes: 'images/bella-vista-mobile-screens-full.webp'
             }
         ]
-    }
+    } */
    /*  test_project: {
         title: "Test Project",
         description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
