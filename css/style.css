@@ -417,6 +417,7 @@ body {
 
 .gallery-item.hero img {
     object-fit: cover;
+    transition: transform 0.3s ease; 
 }
 
 /* Enhanced Desktop Images */
