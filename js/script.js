@@ -57,7 +57,9 @@ const projects = {
     },
     stmnt_studios: {
         title: "STMNT Studios",
-        description: "A website redesign for a video production company in San Francisco. The client wanted more leads from the website so the focus was on CRO principles and best practices.",
+        description: [ "Website for a San Francisco video production company. The task was to facilitate more leads through the website so the focus was on implementing CRO best practices while keeping the main purpose of the website as a portfolio showcase.",
+        "This was accomplished by creating a strong above-the-fold section with more story-focused experience showcasing the portfolio pieces as well as introducing the team and their way of work. The focus of CTA buttons was a Calendly app embed to nudge potential clients to schedule a call."
+        ],
         demoUrl: null,
         items: [
             { 
@@ -98,8 +100,11 @@ const projects = {
         ]
     },
     skyaccess_redesign: {
-        title: "SkyAccess Website",
-        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
+        title: "SkyAccess",
+        description: [
+            "The focus was to redesign an MVP website to establish a brand with a high-end look and feel while respecting all the UI/UX design best practices. Since the website has a more white-label feel I opted for a dark UI theme with a vibrant CTA to really command attention.",
+            "As this is a service for reserving empty-leg private jet lines my main visual element was the rounded square of the jet windows aka the 'squircle' and for smaller elements the same corner radius was employed. This was done as a personal project."
+        ],
         demoUrl: null, // Coming soon
         items: [
             { 
