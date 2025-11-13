@@ -2,7 +2,10 @@
 const projects = {
     pricecheck: {
         title: "Uštedi App",
-        description: "A practical web application for finding the store with cheapest prices based on your shopping list.",
+        description: [
+            "Ustedi is an app for finding the store with the cheapest prices based on your shopping list. I designed a straightforward solution: search for items, build a list, see the nearest store with the best prices. I handled everything end-to-end: wireframes, user flows, high-fidelity UI, and a complete Figma design system with accessibility built in. I also designed the core brand.",
+            "As I worked through the wireframes and flows, I discovered that even simple interfaces have significant complexity beneath the surface. I ran into edge cases and scenarios I hadn't anticipated. This project taught me the importance of systems thinking rather than just making pretty screens scalable design requires anticipating complexity early and building flexible systems that accommodate real-world use."
+        ],
         demoUrl: null, // Coming soon
         items: [
             { 
@@ -158,174 +161,6 @@ const projects = {
             }
         ]
     } */
-   /*  test_project: {
-        title: "Test Project",
-        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
-        demoUrl: null, // Coming soon
-        items: [
-            { 
-                type: 'hero', 
-                src: 'images/skyaccess-hero.webp',
-                fullRes: 'images/skyaccess-hero.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-1.webp',
-                fullRes: 'images/skyaccess-original-1-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-1.webp',
-                fullRes: 'images/skyaccess-redesign-1-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-2.webp',
-                fullRes: 'images/skyaccess-original-2-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-2.webp',
-                fullRes: 'images/skyaccess-redesign-2-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-3.webp',
-                fullRes: 'images/skyaccess-original-3-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-3.webp',
-                fullRes: 'images/skyaccess-redesign-3-full.webp'
-            },
-        ]
-    },
-    test_project2: {
-        title: "Test Project 2",
-        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
-        demoUrl: null, // Coming soon
-        items: [
-            { 
-                type: 'hero', 
-                src: 'images/skyaccess-hero.webp',
-                fullRes: 'images/skyaccess-hero.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-1.webp',
-                fullRes: 'images/skyaccess-original-1-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-1.webp',
-                fullRes: 'images/skyaccess-redesign-1-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-2.webp',
-                fullRes: 'images/skyaccess-original-2-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-2.webp',
-                fullRes: 'images/skyaccess-redesign-2-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-3.webp',
-                fullRes: 'images/skyaccess-original-3-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-3.webp',
-                fullRes: 'images/skyaccess-redesign-3-full.webp'
-            },
-        ]
-    },
-    test_project3: {
-        title: "Test Project 3 with some more text in the name",
-        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
-        demoUrl: null, // Coming soon
-        items: [
-            { 
-                type: 'hero', 
-                src: 'images/skyaccess-hero.webp',
-                fullRes: 'images/skyaccess-hero.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-1.webp',
-                fullRes: 'images/skyaccess-original-1-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-1.webp',
-                fullRes: 'images/skyaccess-redesign-1-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-2.webp',
-                fullRes: 'images/skyaccess-original-2-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-2.webp',
-                fullRes: 'images/skyaccess-redesign-2-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-3.webp',
-                fullRes: 'images/skyaccess-original-3-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-3.webp',
-                fullRes: 'images/skyaccess-redesign-3-full.webp'
-            },
-        ]
-    },
-    test_project4: {
-        title: "Test Project 2",
-        description: "This was done as a personal project. I took an MVP SaaS website and reimagined it as a high-end service with a modern feel.",
-        demoUrl: null, // Coming soon
-        items: [
-            { 
-                type: 'hero', 
-                src: 'images/skyaccess-hero.webp',
-                fullRes: 'images/skyaccess-hero.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-1.webp',
-                fullRes: 'images/skyaccess-original-1-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-1.webp',
-                fullRes: 'images/skyaccess-redesign-1-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-2.webp',
-                fullRes: 'images/skyaccess-original-2-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-2.webp',
-                fullRes: 'images/skyaccess-redesign-2-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-original-3.webp',
-                fullRes: 'images/skyaccess-original-3-full.webp'
-            },
-            { 
-                type: 'desktop', 
-                src: 'images/skyaccess-redesign-3.webp',
-                fullRes: 'images/skyaccess-redesign-3-full.webp'
-            },
-        ]
-    }  */
 };
 
 // Current active project - dynamically set to first project
@@ -399,8 +234,20 @@ function renderProject(projectKey) {
         const demoLink = project.demoUrl 
             ? `<span class="live-demo" onclick="openDemo('${projectKey}')">Live demo.</span>`
             : '';
-        
-        descriptionEl.innerHTML = `${project.description} ${demoLink}`;
+    
+        // Handle both string and array descriptions
+        let descriptionHTML;
+        if (Array.isArray(project.description)) {
+            // Join array elements as separate paragraphs
+            descriptionHTML = project.description
+                .map(paragraph => `<p>${paragraph}</p>`)
+                .join('');
+        } else {
+            // Fallback for old string format
+            descriptionHTML = `<p>${project.description}</p>`;
+        }
+    
+        descriptionEl.innerHTML = `${descriptionHTML} ${demoLink}`;
     }
     
     // Render gallery
@@ -424,7 +271,8 @@ function generateTabs() {
         .map(([key, project]) => `
             <button class="nav-tab ${key === currentProject ? 'active' : ''}" 
                     onclick="switchProject('${key}')" 
-                    data-project="${key}">
+                    data-project="${key}"
+                    data-project-title="${project.title}">
                 ${project.title}
             </button>
         `).join('');
@@ -622,9 +470,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     window.addEventListener('resize', function() {
-    // Re-render gallery if screen crosses the 1024px threshold
-    const currentProject = getCurrentProject(); // You may need to track this
-    renderProject(currentProject);
+        // Re-render gallery if screen crosses the 1024px threshold
+        renderProject(currentProject);
     });
 
     addMobileTouchFeedback();

@@ -203,7 +203,7 @@ body {
     min-width: 0; /* Allow flex item to shrink below content size */
 }
 
-/* Tab Navigation - Clean with arrow navigation */
+/* Tab Navigation - Smooth animations with variable fonts */
 .nav-tabs-container {
     position: relative;
     width: 100%;
@@ -224,7 +224,6 @@ body {
     flex-wrap: nowrap;
     padding-bottom: 12px;
     scroll-behavior: smooth;
-    /* Removed border-bottom */
 }
 
 /* Arrow navigation buttons */
@@ -281,6 +280,7 @@ body {
     stroke: var(--bg-secondary);
 }
 
+/* Tab buttons with smooth variable font transitions */
 .nav-tab {
     background: none;
     border: none;
@@ -289,34 +289,62 @@ body {
     padding: 16px 0;
     cursor: pointer;
     position: relative;
-    transition: all 0.3s ease;
     color: var(--text-secondary);
     white-space: nowrap;
     flex-shrink: 0;
     min-width: fit-content;
+    
+    /* Variable font setup for smooth weight transitions */
+    font-variation-settings: 'wght' 200;
+    transition: color 0.3s ease, font-variation-settings 0.3s ease;
 }
 
-.nav-tab.active {
-    font-weight: 700;
-    color: var(--text-primary);
+/* Reserve space to prevent layout shift when transitioning to bold */
+.nav-tab::before {
+    content: attr(data-project-title);
+    display: block;
+    font-variation-settings: 'wght' 700;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-.nav-tab.active::after {
+/* Animated underline */
+.nav-tab::after {
     content: '';
     position: absolute;
     bottom: 8px;
     left: 0;
-    right: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--blue-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                background 0.3s ease;
+}
+
+/* Hover state - show blue thin line */
+.nav-tab:hover {
+    color: var(--blue-primary);
+}
+
+.nav-tab:hover::after {
+    transform: scaleX(1);
+}
+
+/* Active/Selected state - bold text with thick black line */
+.nav-tab.active {
+    color: var(--text-primary);
+    font-variation-settings: 'wght' 700;
+}
+
+.nav-tab.active::after {
     height: 2px;
     background: var(--accent-color);
-}
-
-.nav-tab:not(.active) {
-    font-weight: 200;
-}
-
-.nav-tab:not(.active):hover{
-    color: var(--blue-primary);
+    transform: scaleX(1);
 }
 
 /* Project Description */
@@ -329,6 +357,15 @@ body {
     margin-bottom: 40px;
     width: 100%;
     min-height: 52px;
+}
+
+/* Paragraph spacing for multiple paragraphs */
+.project-description p {
+    margin-bottom: 16px;
+}
+
+.project-description p:last-child {
+    margin-bottom: 0;
 }
 
 .project-description .live-demo {
@@ -611,9 +648,9 @@ body {
     }
 
     .nav-tabs-container {
-    margin-left:0;
-    justify-content: center; 
-    gap:16px;   
+        margin-left: 0;
+        justify-content: center; 
+        gap: 16px;   
     }
    
     .nav-tabs {
@@ -627,13 +664,12 @@ body {
         scroll-snap-type: x mandatory;
     }
 
-     .nav-tab {
+    .nav-tab {
         scroll-snap-align: start;
         padding: 16px 8px; /* Reduce horizontal padding */
-        /* font-size: 15px;  */
     }
 
-     /* Make arrows slightly smaller on mobile */
+    /* Make arrows slightly smaller on mobile */
     .nav-arrow {
         width: 28px;
         height: 28px;
@@ -714,7 +750,6 @@ body {
     
     .nav-tab {
         padding: 16px 6px; /* More compact padding */
-        /* font-size: 14px;  */
     }
     
     .nav-arrow {
@@ -726,6 +761,7 @@ body {
         width: 12px;
         height: 12px;
     }
+    
     .project-gallery {
         gap: 20px;
         margin-left: 20px;
@@ -767,5 +803,4 @@ body {
     .main-title, .description {
         text-align: left;
     }
-
 }
