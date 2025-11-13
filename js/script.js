@@ -4,7 +4,7 @@ const projects = {
         title: "Uštedi App",
         description: [
             "Ustedi is an app for finding the store with the cheapest prices based on your shopping list. I designed a straightforward solution: search for items, build a list, see the nearest store with the best prices. I handled everything end-to-end: wireframes, user flows, high-fidelity UI, and a complete Figma design system with accessibility built in. I also designed the core brand.",
-            "As I worked through the wireframes and flows, I discovered that even simple interfaces have significant complexity beneath the surface. I ran into edge cases and scenarios I hadn't anticipated. This project taught me the importance of systems thinking rather than just making pretty screens scalable design requires anticipating complexity early and building flexible systems that accommodate real-world use."
+            "As I worked through the wireframes and flows, I discovered that even simple interfaces have significant complexity beneath the surface. I ran into edge cases and scenarios I hadn't anticipated. This project taught me the importance of systems thinking rather than just making pretty screens. Scalable design requires anticipating complexity early and building flexible systems that accommodate real-world use."
         ],
         demoUrl: null, // Coming soon
         items: [
