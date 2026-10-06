@@ -55,6 +55,41 @@
     color-scheme: dark;
 }
 
+/* Going light fades over 4 s instead of snapping: a page that turns white at once is harsh at night. Going dark is
+   instant (Petar, 6 Oct). A transition uses the value of the state it heads into, so the dark theme sets 0 s. The
+   colour tokens are registered as colours so they can blend, and everything that reads them follows. The first paint never
+   fades: the script in <head> sets data-theme before any style exists. --shadow and the scrollbars still switch at
+   once. Reduced motion keeps the instant switch (the rule below). */
+@property --bg { syntax: '<color>'; inherits: true; initial-value: #ffffff; }
+@property --surface { syntax: '<color>'; inherits: true; initial-value: #f4f4f2; }
+@property --text { syntax: '<color>'; inherits: true; initial-value: #141414; }
+@property --text-2 { syntax: '<color>'; inherits: true; initial-value: #474747; }
+@property --text-3 { syntax: '<color>'; inherits: true; initial-value: #6a6a6a; }
+@property --line { syntax: '<color>'; inherits: true; initial-value: #e2e2de; }
+@property --accent { syntax: '<color>'; inherits: true; initial-value: #2e5bba; }
+@property --chip-on-bg { syntax: '<color>'; inherits: true; initial-value: #141414; }
+@property --chip-on-text { syntax: '<color>'; inherits: true; initial-value: #ffffff; }
+@property --row-hover-bg { syntax: '<color>'; inherits: true; initial-value: #141414; }
+@property --row-hover-fg { syntax: '<color>'; inherits: true; initial-value: #ffffff; }
+@property --row-hover-muted { syntax: '<color>'; inherits: true; initial-value: rgba(255, 255, 255, .62); }
+@property --stack-bg { syntax: '<color>'; inherits: true; initial-value: #181818; }
+@property --stack-hover { syntax: '<color>'; inherits: true; initial-value: #2e5bba; }
+@property --board { syntax: '<color>'; inherits: true; initial-value: #e7e5e0; }
+@property --board-ustedi { syntax: '<color>'; inherits: true; initial-value: #dcd9ee; }
+:root[data-theme="dark"] { --theme-fade: 0s; --theme-ink: 0s; }
+/* Going light, the page surfaces fade over the full 4 s. The ink (text, links, and the inverted chip, row and icon-stack
+   fills) changes in 0.4 s centred on the 2 s mark, where the surfaces pass mid-grey, so text never fades into its background. */
+:root {
+    --theme-fade: 4s ease-in-out;
+    --theme-ink: .4s ease-in-out 1.8s;
+    transition: --bg var(--theme-fade), --surface var(--theme-fade), --line var(--theme-fade),
+        --board var(--theme-fade), --board-ustedi var(--theme-fade),
+        --text var(--theme-ink), --text-2 var(--theme-ink), --text-3 var(--theme-ink), --accent var(--theme-ink),
+        --chip-on-bg var(--theme-ink), --chip-on-text var(--theme-ink), --row-hover-bg var(--theme-ink),
+        --row-hover-fg var(--theme-ink), --row-hover-muted var(--theme-ink), --stack-bg var(--theme-ink),
+        --stack-hover var(--theme-ink);
+}
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; }  /* no smooth scroll: with content-visibility it overshoots anchor jumps */
@@ -329,6 +364,12 @@ strong, b { font-weight: 600; color: var(--text); }
 /* The bar's own line (below) stands in for the first row's line while the bar is up, and for all of them once
    they are folded: it starts and ends exactly on them. */
 .index.is-bar .work_row.is-lead, .index.is-folded .work_row { border-bottom-color: transparent; }
+/* The other rows draw their line as a background strip in the border's place, so it can retract right to left
+   as the row goes under (--rule, 1 → 0, set by js/script.js part 5). */
+.index.is-ready .work_row:not(.is-lead) {
+    border-bottom-color: transparent;
+    background: linear-gradient(var(--line), var(--line)) 0 100% / calc(var(--rule, 1) * 100%) 1px no-repeat border-box, var(--bg);
+}
 .index.is-folding .work_list { pointer-events: none; }
 .index.no-anim, .index.no-anim *, .index.no-anim::before, .index.no-anim::after { transition: none !important; }
 

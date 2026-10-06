@@ -311,6 +311,7 @@
         let shown = [], shownTabs = [], cases = [], noW = [], nameW = [];
         let rowH = 0, foldMax = 0, gap = 0, compact = false, tabX = [], tabW = [];
         let rowHs = [], foldFrom = [], foldTo = [];   // each row's height; when it starts folding; how far it travels
+        let chains = [];   // per row: its spans, and the parts that close up toward the name as it folds
         let fTabs = 0, lastFrame = 0, instant = true;   // the fold as the tabs see it: eased toward the real one
         let leadName = null, nameFrom = 0, switchedAt = -1e9;   // the first tab's name, and when it last set off
         let isBar = false, active = -1, ticking = false, drawTimer = 0;
@@ -329,6 +330,8 @@
                 r.classList.remove('is-lead');
                 tabs[i].classList.remove('is-lead', 'is-open');
                 r.style.transform = r.style.zIndex = r.firstElementChild.style.opacity = '';
+                Array.from(r.firstElementChild.children).forEach(function (s) { s.style.translate = s.style.opacity = s.style.clipPath = ''; });
+                r.style.removeProperty('--rule');
                 tabs[i].style.translate = tabs[i].style.opacity = tabs[i].style.clipPath = '';
             });
             if (!shown.length) return;
@@ -357,6 +360,35 @@
             foldFrom = rowHs.map(function (h, i) { return rowHs.slice(i + 1).reduce(function (a, b) { return a + b; }, 0); });
             foldTo = rowHs.map(function (h, i) { return rowHs.slice(0, i).reduce(function (a, b) { return a + b; }, 0) + (i ? Math.max(0, h - rowHs[0]) : 0); });
             foldMax = foldFrom[0];
+            // As a row goes under, its description, status and arrow slide right to left and fade, each disappearing
+            // behind the left edge of its own column (a clip that holds the column still while the text moves). Each
+            // travels its own width, all over the same stretch: until the row above reaches the middle of the text
+            // (endU of the way under). Meanwhile the row's line retracts right to left, gone when the row is under.
+            const textBox = function (el) {
+                const r = document.createRange();
+                r.selectNodeContents(el);
+                const b = r.getBoundingClientRect();
+                return b.width ? b : el.getBoundingClientRect();
+            };
+            chains = shown.map(function (row, i) {
+                const box = row.getBoundingClientRect();
+                const nb = textBox(row.querySelector('.work_row-name'));
+                const mid = nb.top + nb.height / 2;
+                const parts = [];
+                ['.work_row-what', '.work_row-status', '.work_row-arrow'].forEach(function (sel) {
+                    const el = row.querySelector(sel);
+                    if (!el || !el.getClientRects().length) return;   // not shown at this width
+                    const b = textBox(el);
+                    if (b.top > mid || b.bottom < mid) return;         // on a line of its own (phones): it just fades
+                    parts.push({ el: el, travel: b.right - el.getBoundingClientRect().left + 2 });
+                });
+                return {
+                    row: row,
+                    spans: Array.from(row.firstElementChild.children),
+                    parts: parts,
+                    endU: Math.min(Math.max((mid - box.top) / rowHs[i], 0.15), 0.9)
+                };
+            });
             nav.style.setProperty('--row-h', rowH + 'px');
             nav.style.setProperty('--bar-h', barH + 'px');
             nav.style.setProperty('--n', n);
@@ -471,7 +503,18 @@
                 const under = i ? Math.min(Math.max(into / rowHs[i], 0), 1) : 0;
                 row.style.transform = shift ? 'translate3d(0,' + (-shift) + 'px,0)' : '';
                 row.style.zIndex = f > 0 ? String(n - i) : '';
-                row.firstElementChild.style.opacity = under ? String(1 - under) : '';
+                const c = chains[i];
+                const fade = under ? String(1 - under) : '';
+                c.spans.forEach(function (s) { s.style.opacity = fade; });
+                const q = under ? Math.min(under / c.endU, 1) : 0;
+                const e = q * q * (3 - 2 * q);
+                c.parts.forEach(function (p) {
+                    const d = p.travel * e;
+                    p.el.style.translate = e ? (-d).toFixed(2) + 'px 0' : '';
+                    p.el.style.clipPath = e ? 'inset(-6px -6px -6px ' + d.toFixed(2) + 'px)' : '';
+                    p.el.style.opacity = e ? (1 - e).toFixed(3) : '';
+                });
+                if (under) c.row.style.setProperty('--rule', (1 - under).toFixed(3)); else c.row.style.removeProperty('--rule');
             });
             nav.classList.toggle('is-folding', f > 0 && f < foldMax);
 
