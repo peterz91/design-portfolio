@@ -1,132 +1,722 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Petar Živković - Interface Designer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Petar Živković · Brand &amp; Digital Designer, Zagreb</title>
+    <meta name="description" content="Brand and digital designer in Zagreb: campaigns and print, web and UI built in Webflow and Shopify, and AI-assisted imagery. 10 years, open to full-time roles.">
+    <link rel="canonical" href="https://peterz91.github.io/design-portfolio/">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0e0f11" media="(prefers-color-scheme: dark)">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://peterz91.github.io/design-portfolio/">
+    <meta property="og:title" content="Petar Živković · Brand & Digital Designer">
+    <meta property="og:description" content="Campaigns and print, web and UI built in Webflow and Shopify, and AI-assisted imagery. Zagreb, open to full-time roles.">
+    <meta property="og:image" content="https://peterz91.github.io/design-portfolio/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Petar Živković, Brand & Digital Designer: the STMNT Studios and STMNT Wear websites and the Uštedi app.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="favicon.ico?v=2" sizes="32x32">
+    <link rel="icon" href="favicon-32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+
+    <!-- Theme before first paint: the visitor's saved choice, else the OS setting. -->
+    <script>
+        (function () {
+            var t = null;
+            try { t = localStorage.getItem('theme'); } catch (e) {}
+            if (t !== 'light' && t !== 'dark') {
+                t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', t);
+            document.documentElement.classList.add('js');
+        })();
+    </script>
+
+    <!-- Geologica (variable, weight axis 100–900; the same files Google serves for any range), latin + latin-ext only. The @font-face rules are copied from
+         https://fonts.googleapis.com/css2?family=Geologica:wght@200..700&display=swap (v5, 1 Oct 2026),
+         so the page doesn't wait on that stylesheet. Text shows in the fallback font, then swaps. -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@200;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css">
-    <script type="module">
-        import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.js';
+    <link rel="preload" href="https://fonts.gstatic.com/s/geologica/v5/oY1l8evIr7j9P3TN9YwNAdyjzUyDKkKdAGOJh1UlCDUIhAIdhCZOn1fLsig7jfvCCPHZckUWE1lELWNN-w.woff2" as="font" type="font/woff2" crossorigin>
+    <style>
+        @font-face {
+            font-family: 'Geologica'; font-style: normal; font-weight: 100 900; font-display: swap;
+            src: url(https://fonts.gstatic.com/s/geologica/v5/oY1l8evIr7j9P3TN9YwNAdyjzUyDKkKdAGOJh1UlCDUIhAIdhCZOn1fLsig7jfvCCPHZckUWHVlELWNN-8tr.woff2) format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        @font-face {
+            font-family: 'Geologica'; font-style: normal; font-weight: 100 900; font-display: swap;
+            src: url(https://fonts.gstatic.com/s/geologica/v5/oY1l8evIr7j9P3TN9YwNAdyjzUyDKkKdAGOJh1UlCDUIhAIdhCZOn1fLsig7jfvCCPHZckUWE1lELWNN-w.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        /* Fallback scaled to Geologica's width (measured: +5.5% at 300, +2.6% at 600), so lines
+           don't re-wrap and the page doesn't jump when the web font arrives. */
+        @font-face {
+            font-family: 'Geologica Fallback'; font-weight: 100 500;
+            src: local('Arial'), local('ArialMT'), local('Helvetica'), local('Liberation Sans');
+            size-adjust: 105.5%;
+        }
+        @font-face {
+            font-family: 'Geologica Fallback'; font-weight: 600 900;
+            src: local('Arial Bold'), local('Arial-BoldMT'), local('Helvetica Bold'), local('Liberation Sans Bold');
+            size-adjust: 102.6%;
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css?v=1.2.38">
+    <!-- Without JS, the STMNT system board still gets STMNT's typefaces (js/script.js loads them lazily otherwise). -->
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan&amp;family=Raleway:wght@900&amp;display=swap&amp;text=AaRlewyLgu%20Sprtn"></noscript>
 
-        const lightbox = new PhotoSwipeLightbox({
-            gallery: '.project-gallery',
-            children: '.clickable-image',
-            pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.esm.js'),
-  
-            // Keep aspect ratio - don't stretch images
-            initialZoomLevel: 'fill',
-            secondaryZoomLevel: 1,
-            maxZoomLevel: 2,
-  
-            // Ensure images aren't stretched
-            imageClickAction: 'zoom',
-            bgClickAction: 'close',
-            doubleTapAction: 'zoom'
-        });
-
-        lightbox.init();
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Petar Živković",
+        "jobTitle": "Brand & Digital Designer",
+        "url": "https://peterz91.github.io/design-portfolio/",
+        "email": "mailto:peter.zivkovic@gmail.com",
+        "image": "https://peterz91.github.io/design-portfolio/images/petar-zivkovic-489.webp",
+        "address": { "@type": "PostalAddress", "addressLocality": "Zagreb", "addressCountry": "HR" },
+        "sameAs": ["https://www.linkedin.com/in/petarz/", "https://x.com/ZivkovicPeter"],
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Rijeka" },
+        "knowsLanguage": ["hr", "en"],
+        "knowsAbout": ["Brand design", "Campaign key visuals", "Print production", "Web design", "UI design", "Design systems", "Webflow", "Shopify", "Figma", "AI image generation"]
+    }
     </script>
 </head>
-<body data-theme="light">
+<body>
+    <!-- Tool marks for the case stacks (Simple Icons, CC0; the same set as the PDF portfolio). -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="i-figma" viewBox="0 0 24 24"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></symbol>
+        <symbol id="i-webflow" viewBox="0 -203.158 1080 1080"><path fill-rule="evenodd" clip-rule="evenodd" d="M1080 0L735.386 673.684H411.695L555.916 394.481H549.445C430.464 548.934 252.942 650.61 -0.000488281 673.684V398.344C-0.000488281 398.344 161.813 388.787 256.938 288.776H-0.000488281V0.0053214H288.771V237.515L295.252 237.489L413.254 0.0053214H631.644V236.009L638.126 235.999L760.555 0H1080Z"/></symbol>
+        <symbol id="i-shopify" viewBox="0 0 24 24"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></symbol>
+        <symbol id="i-claude" viewBox="0.4 0.2 93.6 93.6"><path d="M18.7657 62.4437L37.1822 52.1167L37.4857 51.2122L37.1822 50.7085H36.2715L33.1852 50.5208L22.6615 50.2391L13.5545 49.8636L4.70044 49.3942L2.47428 48.9248L0.399902 46.1553L0.602281 44.794L2.47428 43.5266L5.15579 43.7613L11.0754 44.1837L19.98 44.794L26.4055 45.1695L35.9679 46.1553H37.4857L37.6881 45.545L37.1822 45.1695L36.7774 44.794L27.5692 38.5508L17.6021 31.9791L12.3908 28.1769L9.60812 26.2524L8.19147 24.4686L7.58433 20.5256L10.1141 17.7091L13.5545 17.9438L14.4146 18.1785L17.9056 20.8542L25.343 26.6279L35.0572 33.7629L36.4739 34.9364L37.0443 34.5514L37.1316 34.2792L36.4739 33.1996L31.212 23.6706L25.596 13.9539L23.0663 9.91695L22.4086 7.52296C22.1538 6.51831 22.0038 5.68714 22.0038 4.65957L24.8877 0.716544L26.5067 0.200195L30.4025 0.716544L32.0215 2.12477L34.4501 7.66379L38.3458 16.3478L44.4172 28.1769L46.188 31.6975L47.1493 34.9364L47.5035 35.9222H48.1106V35.3589L48.6166 28.6933L49.5273 20.5256L50.438 10.0108L50.7415 7.05356L52.2088 3.48605L55.1433 1.56148L57.42 2.64112L59.292 5.31674L59.039 7.05356L57.926 14.2824L55.7504 25.5952L54.3337 33.1996H55.1433L56.1046 32.2138L59.9497 27.1442L66.3752 19.0704L69.2085 15.8784L72.5478 12.3579L74.6728 10.668H78.7203L81.6548 15.0804L80.3394 19.6337L76.1906 24.8911L72.7502 29.3504L67.8172 35.9595L64.7562 41.2734L65.0307 41.7118L65.7681 41.6489L76.8989 39.255L82.9197 38.1753L90.1041 36.9549L93.3422 38.457L93.6963 40.006L92.4315 43.151L84.7411 45.0287L75.7353 46.8594L62.3244 50.0164L62.1759 50.1358L62.3512 50.3958L68.399 50.9432L70.9794 51.084H77.3037L89.0922 51.9759L92.1785 53.9944L93.9999 56.4822L93.6963 58.4068L88.9404 60.8008L82.5655 59.2987L67.6401 55.7312L62.5301 54.4638H61.8217V54.8862L66.0717 59.064L73.9139 66.1051L83.6786 75.2116L84.1845 77.4648L82.9197 79.2485L81.6042 79.0608L73.0032 72.5829L69.6639 69.6726L62.1759 63.3356H61.67V63.9928L63.3902 66.5276L72.5478 80.2812L73.0032 84.5059L72.3454 85.8672L69.9675 86.7121L67.3871 86.2427L61.9735 78.6852L56.4587 70.2359L52.0064 62.6315L51.4687 62.971L48.8189 91.2654L47.6047 92.7206L44.7714 93.8002L42.3934 92.0164L41.1286 89.1061L42.3934 83.3324L43.9113 75.8219L45.1255 69.8604L46.2386 62.4437L46.9184 59.9661L46.8583 59.8003L46.3153 59.8916L40.7238 67.5603L32.2239 79.0608L25.4948 86.2427L23.8758 86.8999L21.0931 85.4447L21.3461 82.863L22.9145 80.5629L32.2239 68.7338L37.8399 61.3641L41.4594 57.1337L41.4242 56.5218L41.2244 56.5048L16.489 72.6299L12.0873 73.1932L10.1647 71.4094L10.4176 68.4991L11.3283 67.5603L18.7657 62.4437Z"/></symbol>
+        <symbol id="i-google-ads" viewBox="0 0 24 24"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></symbol>
+        <symbol id="i-google-analytics" viewBox="0 0 24 24"><path d="M22.84 2.9982v17.9987c.0086 1.6473-1.3197 2.9897-2.967 2.9984a2.9808 2.9808 0 01-.3677-.0208c-1.528-.226-2.6477-1.5558-2.6105-3.1V3.1204c-.0369-1.5458 1.0856-2.8762 2.6157-3.1 1.6361-.1915 3.1178.9796 3.3093 2.6158.014.1201.0208.241.0202.3619zM4.1326 18.0548c-1.6417 0-2.9726 1.331-2.9726 2.9726C1.16 22.6691 2.4909 24 4.1326 24s2.9726-1.3309 2.9726-2.9726-1.331-2.9726-2.9726-2.9726zm7.8728-9.0098c-.0171 0-.0342 0-.0513.0003-1.6495.0904-2.9293 1.474-2.891 3.1256v7.9846c0 2.167.9535 3.4825 2.3505 3.763 1.6118.3266 3.1832-.7152 3.5098-2.327.04-.1974.06-.3983.0593-.5998v-8.9585c.003-1.6474-1.33-2.9852-2.9773-2.9882z"/></symbol>
+        <symbol id="i-search-console" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M14.81 21.66 19.75 21.64 20.35 21.55 21.07 21.33 21.53 21.13 21.94 20.88 22.3 20.61 22.73 20.21 23.17 19.65 23.41 19.27 23.63 18.8 23.79 18.35 23.94 17.66 23.99 17.01 23.99 4.64 23.9 3.77 23.76 3.23 23.45 2.47 23.18 2.02 22.79 1.54 22.32 1.08 21.9 0.76 21.18 0.38 20.69 0.2 19.82 0.03 19.37 0 18.92 0.03 18.45 0.1 18.01 0.21 17.58 0.37 17.18 0.56 16.8 0.79 16.42 1.06 15.79 1.71 15.52 2.07 15.29 2.45 15.09 2.87 14.94 3.32 14.77 4.13 14.75 4.69 14.75 21.53 14.76 21.62ZM13.55 21.66 13.65 21.64 13.68 21.55 13.68 6.5 13.64 6.4 13.47 6.38 12.57 6.47 12.12 6.58 11.65 6.75 10.85 7.19 10.4 7.55 10 7.95 9.64 8.42 9.42 8.79 9.22 9.2 9.06 9.64 8.94 10.1 8.89 10.5 8.86 11.49 8.9 11.64 9.64 11.95 10.4 12.41 10.85 12.76 11.42 13.34 11.95 14.06 12.19 14.51 12.47 15.18 12.64 15.76 12.77 16.54 12.79 17.12 12.72 17.9 12.56 18.67 12.37 19.18 11.99 19.96 11.7 20.39 11.22 20.97 11.2 21.04 11.3 21.12 11.65 21.29 12.19 21.48 12.97 21.63ZM0.63 23.88 0.83 23.96 1.03 23.97 1.21 23.92 1.41 23.8 4.41 20.83 5.28 21.28 5.79 21.47 6.67 21.64 7.54 21.64 8.43 21.47 9.22 21.15 9.75 20.82 10.38 20.3 10.67 19.98 10.94 19.62 11.18 19.22 11.37 18.8 11.53 18.37 11.63 17.95 11.7 17.48 11.72 17.03 11.63 16.14 11.53 15.71 11.36 15.27 11.18 14.89 10.94 14.48 10.67 14.11 10.33 13.75 9.66 13.2 8.86 12.77 7.99 12.51 7.09 12.43 6.22 12.51 5.33 12.78 4.52 13.22 3.81 13.81 3.28 14.46 2.86 15.22 2.66 15.8 2.51 16.59 2.5 17.41 2.58 17.97 2.82 18.78 3.18 19.47 3.19 19.56 0.27 22.49 0.11 22.69 0.02 22.96 0.02 23.18 0.08 23.32 0.23 23.54 0.47 23.78Z"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2.51 0.24 2.27 0.39 2.09 0.63 1.97 1.25 1.98 13.11 2 13.69 2.1 14.1 2.27 14.41 2.7 14.92 11.16 23.47 11.74 23.9 12.02 23.95 12.26 23.91 12.8 23.52 21.32 14.91 21.9 14.14 22 13.76 22.03 13.18 22.03 1.42 21.94 0.7 21.76 0.43 21.49 0.24 21.21 0.16 20.63 0.12 3.57 0.12 2.89 0.14Z"/></symbol><symbol id="i-flora" viewBox="64.001 64.002 127.999 127.999"><g transform="translate(66.0588 61.3292) scale(2.225700)"><path d="M0 44.2691C0 36.7919 6.06146 30.7305 13.5387 30.7305V30.7305C21.0159 30.7305 27.0773 36.7919 27.0773 44.2691V44.6327C27.0773 52.3108 20.853 58.535 13.175 58.535H0V44.2691Z"/><path d="M55.6602 58.7104H42.4851C34.8071 58.7104 28.5828 52.4862 28.5828 44.8082V44.4445C28.5828 36.9674 34.6443 30.9059 42.1215 30.9059V30.9059C49.5987 30.9059 55.6602 36.9674 55.6602 44.4445V58.7104Z"/><path d="M55.6602 15.642C55.6602 23.1192 49.5987 29.1807 42.1215 29.1807V29.1807C34.6443 29.1807 28.5828 23.1192 28.5828 15.642V15.2784C28.5828 7.60037 34.8071 1.37611 42.4851 1.37611H55.6602V15.642Z"/><path d="M0 1.20068L13.175 1.20068C20.8531 1.20068 27.0773 7.42494 27.0773 15.103V15.4666C27.0773 22.9438 21.0159 29.0052 13.5387 29.0052V29.0052C6.06146 29.0052 0 22.9438 0 15.4666L0 1.20068Z"/></g></symbol><symbol id="i-affinity" viewBox="-15.319 1.689 280.086 280.086"><path d="M115.262,224.021c-18.718,0-30.627-11.355-30.627-25.759c0-61.635,162.083-73.975,162.083-139.431
+	c0-39.931-46.255-57.142-105.3-57.142c-35.916,0-76.528,6.648-114.243,18.543v78.086c55.581-40.482,117.336-57.812,157.113-57.812
+	c25.012,0,41.984,6.979,41.984,19.483c0,51.517-223.541,43.354-223.542,154.672c0,42.668,29.339,67.114,70.617,67.114
+	c62.436,0,109.662-60.676,144.992-134.637l7.158,2.571c-18.607,45.198-57.113,94.757-64.613,126.614h80.382V111.506h-18.565
+	C195.754,170.062,156.265,224.021,115.262,224.021z"/></symbol></svg>
+    <a class="skip" href="#work">Skip to the work</a>
 
-    <!-- Header Section -->
-    <div class="header-content">
-        <div class="profile-section">
-            <div class="profile-image"></div>
-            
-            <!-- Social Icons Grid -->
-            <div class="social-icons">
-                <a href="mailto:91edtn@gmail.com" class="social-icon" target="_blank" rel="noopener">
-                    <img src="./images/ic-email.svg">
-                </a>
-                <a href="https://x.com/ZivkovicPeter" class="social-icon" target="_blank" rel="noopener">
-                    <img src="./images/ic-x.svg">
-                </a>
-                <a href="https://github.com/peterz91" class="social-icon" target="_blank" rel="noopener">
-                    <img src="./images/ic-github.svg">
-                </a>
-                <a href="https://dribbble.com/pzivkovic" class="social-icon" target="_blank" rel="noopener">
-                    <img src="./images/ic-dribbble.svg">
-                </a>
-            </div>
-        </div>
-
-        <div class="content-right">
-            <!-- Theme Toggle -->
-            <button class="theme-toggle" onclick="toggleTheme()">
-                <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"/>
-                    <line x1="12" y1="1" x2="12" y2="3"/>
-                    <line x1="12" y1="21" x2="12" y2="23"/>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                    <line x1="1" y1="12" x2="3" y2="12"/>
-                    <line x1="21" y1="12" x2="23" y2="12"/>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                </svg>
-                <div class="toggle-slider">
-                    <div class="toggle-circle"></div>
-                </div>
-                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-            </button>
-
-            <h1 class="main-title">Interface designer</h1>
-                
-            <p class="description">
-                My name is Petar Živković and in my 10 years of professional design experience I've created comprehensive design solutions including brochures, logos, billboards, social media visuals, websites, and video content for some of Croatia's biggest brands spanning many different industries. I'm now focused entirely on end-to-end design for mobile and web.</br></br>
-                
-                Whether you're looking for a website that converts visitors into customers or an app interface that users will love, I'd love to help make it happen. Contact me at <a href="mailto:peter.zivkovic@gmail.com" class="email-link">peter.zivkovic@gmail.com</a> and let's chat about your project!
-            </p>
-        </div>
-    </div>
-    
-    <!-- Project Content Section -->
-    <section class="project-content">
-        <!-- Empty spacer container to align with header layout -->
-        <div class="empty-container"></div>
-        
-        <!-- Tabs and Description -->
-        <div class="tabs-and-description">
-            <!-- Tab Navigation with Arrow Controls -->
-            <div class="nav-tabs-container">
-                <button class="nav-arrow nav-arrow-left" id="tabArrowLeft">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="m15 18-6-6 6-6"/>
-                    </svg>
-                </button>
-                
-                <div class="nav-tabs" id="navTabs">
-                    <!-- Tabs will be generated by JavaScript -->
-                </div>
-                
-                <button class="nav-arrow nav-arrow-right" id="tabArrowRight">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="m9 18 6-6-6-6"/>
-                    </svg>
-                </button>
+    <!-- ───────── Hero ───────── -->
+    <header class="hero" id="top">
+        <div class="wrap split">
+            <div class="hero_id">
+                <img class="hero_photo" src="images/petar-zivkovic-326.webp"
+                     srcset="images/petar-zivkovic-326.webp 2x, images/petar-zivkovic-489.webp 3x"
+                     width="163" height="163" alt="Portrait of Petar Živković" fetchpriority="high">
+                <nav class="hero_stack" aria-label="Contact">
+                    <a class="hero_stack-item" href="mailto:peter.zivkovic@gmail.com" aria-label="Email peter.zivkovic@gmail.com" title="Email">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                    </a>
+                    <a class="hero_stack-item" href="https://www.linkedin.com/in/petarz/" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in a new tab)" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                    </a>
+                    <a class="hero_stack-item" href="https://x.com/ZivkovicPeter" target="_blank" rel="noopener" aria-label="X profile (opens in a new tab)" title="X">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.59-6.63 7.59H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.49h2.04L6.49 3.24H4.3l13.31 17.4z"/></svg>
+                    </a>
+                    <button class="hero_stack-item" type="button" data-theme-toggle aria-pressed="false" aria-label="Dark theme" title="Dark theme">
+                        <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+                        <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                    </button>
+                </nav>
             </div>
 
-            <!-- Project Description -->
-            <div class="project-description-container">
-                <div class="project-description">
-                    <!-- Content will be populated by JavaScript -->
+            <div class="hero_text">
+                <h1 class="hero_name">Petar Živković</h1>
+                <p class="hero_role">Brand &amp; Digital Designer</p>
+                <div class="hero_intro">
+                    <p>I design campaigns and brand systems, websites and product UI, and AI-assisted imagery, and I build what I design in Webflow and Shopify.</p>
+                    <p>From 2016 to 2025 I was the only designer at a Zagreb digital agency, taking key visuals for 30+ clients to display, social, web, POS and print. Since 2025 I design and build websites for US clients.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Unified Project Gallery -->
-    <section class="project-gallery">
-        <!-- Gallery items will be dynamically populated by JavaScript -->
-    </section>
-    
-    <script src="js/script.js"></script>
+    <main id="work">
+        <!-- ───────── Work index ───────── -->
+        <div class="work wrap">
+            <div class="work_head">
+                <h2 class="work_title" id="work-title">Selected work</h2>
+                <div class="work_filters" role="group" aria-label="Filter the work">
+                    <button class="work_chip" type="button" data-lane-chip="all" aria-pressed="true">All</button>
+                    <button class="work_chip" type="button" data-lane-chip="graphic" aria-pressed="false">Graphic</button>
+                    <button class="work_chip" type="button" data-lane-chip="ui" aria-pressed="false">UI/UX</button>
+                    <button class="work_chip" type="button" data-lane-chip="ai" aria-pressed="false">AI imagery</button>
+                    <button class="work_chip" type="button" data-lane-chip="motion" aria-pressed="false">Motion</button>
+                </div>
+            </div>
+            <p class="visually-hidden" data-filter-status aria-live="polite"></p>
+        </div>
+        <!-- The index is a direct child of <main>, so it can stay sticky down to the footer. Scrolled past,
+             it folds from the bottom up and turns into the project bar (js/script.js, part 5). -->
+        <nav class="index" aria-labelledby="work-title" data-index>
+            <div class="index_inner wrap">
+                <ol class="work_list">
+                    <li class="work_row" data-lanes="ui"><a href="#stmnt-studios">
+                        <span class="work_row-no">01</span><span class="work_row-name">STMNT Studios</span>
+                        <span class="work_row-what">Website redesign, Webflow build, Google Ads</span>
+                        <span class="work_row-status">Client · <span class="work_row-live">live</span></span><span class="work_row-arrow" aria-hidden="true"></span></a></li>
+                    <li class="work_row" data-lanes="ui"><a href="#stmnt-wear">
+                        <span class="work_row-no">02</span><span class="work_row-name">STMNT Wear</span>
+                        <span class="work_row-what">UX audit, homepage and product page redesign</span>
+                        <span class="work_row-status">Client · <span class="work_row-live">live</span></span><span class="work_row-arrow" aria-hidden="true"></span></a></li>
+                    <li class="work_row" data-lanes="graphic ai" data-short="Derby Weekend"><a href="#derby-weekend">
+                        <span class="work_row-no">03</span><span class="work_row-name">Derby Weekend campaign</span>
+                        <span class="work_row-what">Key visual, 9 digital formats, A2 print</span>
+                        <span class="work_row-status">Unofficial concept</span><span class="work_row-arrow" aria-hidden="true"></span></a></li>
+                    <li class="work_row" data-lanes="graphic ui motion"><a href="#ustedi">
+                        <span class="work_row-no">04</span><span class="work_row-name">Uštedi</span>
+                        <span class="work_row-what">Brand identity, app UI, 146-variable system</span>
+                        <span class="work_row-status">Personal concept</span><span class="work_row-arrow" aria-hidden="true"></span></a></li>
+                    <li class="work_row" data-lanes="ai motion graphic" data-short="AI production"><a href="#ai-production">
+                        <span class="work_row-no">05</span><span class="work_row-name">AI production &amp; motion</span>
+                        <span class="work_row-what">AI art direction, layout pipeline, coded loop</span>
+                        <span class="work_row-status">Unofficial concept</span><span class="work_row-arrow" aria-hidden="true"></span></a></li>
+                </ol>
+            </div>
+        </nav>
+        <div class="wrap split">
+            <p class="work_note">Agency work from 2016 to 2025 is under NDA, so everything here is from 2025 on: live client sites and clearly labelled concepts.</p>
+        </div>
+
+        <!-- ───────── 01 STMNT Studios ───────── -->
+        <article class="case wrap" id="stmnt-studios" data-lanes="ui" aria-labelledby="stmnt-studios-title">
+            <div class="case_head split">
+                <div class="case_meta">
+                    <p class="case_year label">2025–26</p>
+                    <p class="case_kicker"><span class="case_no" aria-hidden="true">01</span><span class="label">Web &amp; UI</span></p>
+                    <span class="pill">Client · Live</span>
+                </div>
+                <div class="case_text">
+                    <div class="case_title-row">
+                        <h3 class="case_title" id="stmnt-studios-title"><a class="case_title-link" href="https://www.stmntstudios.com/" target="_blank" rel="noopener" title="stmntstudios.com">STMNT Studios<svg class="case_title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><span class="visually-hidden"> (live site, opens in a new tab)</span></a></h3>
+                        <span class="case_stack" role="list" aria-label="Tools"><span class="case_tool" role="listitem" data-tool="Figma"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-figma"/></svg><span class="visually-hidden">Figma</span></span><span class="case_tool" role="listitem" data-tool="Pen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pen"/></svg><span class="visually-hidden">Pen</span></span><span class="case_tool" role="listitem" data-tool="Webflow"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-webflow"/></svg><span class="visually-hidden">Webflow</span></span><span class="case_tool" role="listitem" data-tool="Claude Code"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-claude"/></svg><span class="visually-hidden">Claude Code</span></span><span class="case_tool" role="listitem" data-tool="Google Ads"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-google-ads"/></svg><span class="visually-hidden">Google Ads</span></span><span class="case_tool" role="listitem" data-tool="Google Analytics"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-google-analytics"/></svg><span class="visually-hidden">Google Analytics</span></span><span class="case_tool" role="listitem" data-tool="Search Console"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-search-console"/></svg><span class="visually-hidden">Search Console</span></span></span>
+                    </div>
+                    <p class="case_lede">Website redesign and Webflow build for a San Francisco video production company.</p>
+                    <dl class="case_facts">
+                        <dt>Role</dt><dd>Web design, Webflow build, Google Ads, technical SEO</dd>
+                        <dt>System</dt><dd>50 design variables · a 57-field case-study template · 42 blog posts</dd>
+                        <dt>Result</dt><dd>The Jun–Sep 2026 search campaign brought two booked sales calls. The client reports a signed five-figure deal from them.</dd>
+                    </dl>
+                    <div class="case_body">
+                        <p>I redesigned the site in Figma and built it in Webflow: information architecture, page structure, a component library, a CMS for case studies and the blog, and landing pages for paid search.</p>
+                        <p>The logo and colours were the client’s. My job was to turn them into a system that holds up across every page, on desktop and mobile. I also built the Tech &amp; Fintech landing page, run the Google Ads campaign that points to it, and look after the site’s technical SEO.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="case_gallery">
+                <figure class="shot is-wide">
+                    <a class="shot_link" href="images/stmnt-home-studio-full.webp" data-pswp-width="2800" data-pswp-height="1750">
+                        <img src="images/stmnt-home-studio-1200.webp" srcset="images/stmnt-home-studio-1200.webp 1200w, images/stmnt-home-studio-full.webp 2800w" sizes="(max-width: 860px) calc(100vw - 40px), 1184px" width="1200" height="750" loading="lazy" decoding="async"
+                             alt="STMNT Studios homepage on a Studio Display, on a desk in a dimly lit production studio: the San Francisco based video production company headline, the pink Make your STMNT button and the four callouts under it.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Homepage (mockup)</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link is-board" href="images/stmnt-tech-advantage-full.webp" data-pswp-width="2400" data-pswp-height="1500">
+                        <img src="images/stmnt-tech-advantage-1200.webp" srcset="images/stmnt-tech-advantage-1200.webp 1200w, images/stmnt-tech-advantage-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="750" loading="lazy" decoding="async"
+                             alt="Tech and Fintech landing page, the section In-house speed, outsourced efficiency: a Scale and Flex panel with a photo of a make-up artist preparing a presenter and a Start your project button, above a six-step slider from In-house teams to Value and budget fit.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Tech &amp; Fintech landing page</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link is-board" href="images/stmnt-plaid-campaigns-full.webp" data-pswp-width="2400" data-pswp-height="1500">
+                        <img src="images/stmnt-plaid-campaigns-1200.webp" srcset="images/stmnt-plaid-campaigns-1200.webp 1200w, images/stmnt-plaid-campaigns-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="750" loading="lazy" decoding="async"
+                             alt="Plaid case-study page, the section Six campaigns. Four teams.: the first two campaign cards, Woven Series and Lending Week, each with a video thumbnail, the brief, a summary and a Read more link.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Case-study template</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <div class="shot_stage is-board is-browser">
+                        <div class="browser_frame">
+                            <div class="browser_bar" aria-hidden="true"><i></i><i></i><i></i><span>stmntstudios.com/work/plaid-fintech-video-production-san-francisco</span></div>
+                            <video controls muted loop playsinline preload="none" width="1440" height="900" data-poster="media/stmnt-case-cards-poster.webp" data-autoplay
+                                   aria-label="Screen recording of the Plaid case-study page on the live site: Read more on the first campaign card opens its full text, the card grows over the card beneath it, which recedes, and Read less closes it again.">
+                                <source src="media/stmnt-case-cards-av1.mp4" type='video/mp4; codecs="av01.0.13M.08"'>
+                                <source src="media/stmnt-case-cards.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <figcaption class="shot_cap"><b>Card expand</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <div class="shot_stage is-board is-browser">
+                        <div class="browser_frame">
+                            <div class="browser_bar" aria-hidden="true"><i></i><i></i><i></i><span>stmntstudios.com</span></div>
+                            <video controls muted loop playsinline preload="none" width="1440" height="900" data-poster="media/stmnt-process-poster.webp" data-autoplay
+                                   aria-label="Screen recording of the process section on the live site: as the slider head travels along its track, the four step cards light up one by one.">
+                                <source src="media/stmnt-process-av1.mp4" type='video/mp4; codecs="av01.0.13M.08"'>
+                                <source src="media/stmnt-process.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <figcaption class="shot_cap"><b>Slide reveal</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <div class="shot_stage is-board is-browser">
+                        <div class="browser_frame">
+                            <div class="browser_bar" aria-hidden="true"><i></i><i></i><i></i><span>stmntstudios.com</span></div>
+                            <video controls muted loop playsinline preload="none" width="1440" height="900" data-poster="media/stmnt-team-poster.webp" data-autoplay
+                                   aria-label="Screen recording of the team section on the live site: hovering each card swaps the portrait for a second photo on a coloured background.">
+                                <source src="media/stmnt-team-av1.mp4" type='video/mp4; codecs="av01.0.13M.08"'>
+                                <source src="media/stmnt-team.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <figcaption class="shot_cap"><b>Team hover</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <div class="shot_stage is-board is-browser">
+                        <div class="browser_frame">
+                            <div class="browser_bar" aria-hidden="true"><i></i><i></i><i></i><span>stmntstudios.com/work/plaid-fintech-video-production-san-francisco</span></div>
+                            <video controls muted loop playsinline preload="none" width="1440" height="900" data-poster="media/stmnt-case-glow-poster.webp" data-autoplay
+                                   aria-label="Screen recording of the Plaid case-study page on the live site: under Results and Impact, a glow in the brand's cyan, orange and magenta follows the pointer around the edges of the three video cards.">
+                                <source src="media/stmnt-case-glow-av1.mp4" type='video/mp4; codecs="av01.0.13M.08"'>
+                                <source src="media/stmnt-case-glow.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <figcaption class="shot_cap"><b>Edge glow</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <!-- The STMNT system, built from the live site's 50 CSS variables (www.stmntstudios.com, 2 Oct 2026). js/script.js part 6 plays it in. -->
+                    <div class="ds" data-ds>
+                        <div class="ds_group ds_primitives" data-ds-group>
+                            <p class="ds_label" id="ds-primitives">Primitives</p>
+                            <ul class="ds_swatches" aria-labelledby="ds-primitives">
+                                <li style="--c: #FE0080; --i: 0"><span class="ds_chip" aria-hidden="true"></span><code>neon-rose</code><span class="ds_hex">#FE0080</span></li>
+                                <li style="--c: #00EFFF; --i: 1"><span class="ds_chip" aria-hidden="true"></span><code>brain-freeze</code><span class="ds_hex">#00EFFF</span></li>
+                                <li style="--c: #F77522; --i: 2"><span class="ds_chip" aria-hidden="true"></span><code>sun-orange</code><span class="ds_hex">#F77522</span></li>
+                                <li style="--c: #CB89B6; --i: 3"><span class="ds_chip" aria-hidden="true"></span><code>rock-star-pink</code><span class="ds_hex">#CB89B6</span></li>
+                                <li style="--c: #9EE8F8; --i: 4"><span class="ds_chip" aria-hidden="true"></span><code>winter-wizard</code><span class="ds_hex">#9EE8F8</span></li>
+                                <li style="--c: #151515; --i: 5"><span class="ds_chip" aria-hidden="true"></span><code>matt-black</code><span class="ds_hex">#151515</span></li>
+                                <li style="--c: #1F1F1F; --i: 6"><span class="ds_chip" aria-hidden="true"></span><code>matt-black-secondary</code><span class="ds_hex">#1F1F1F</span></li>
+                                <li style="--c: #CEC8C8; --i: 7"><span class="ds_chip" aria-hidden="true"></span><code>serious-gray</code><span class="ds_hex">#CEC8C8</span></li>
+                                <li style="--c: #F3EEEE; --i: 8"><span class="ds_chip" aria-hidden="true"></span><code>off-white</code><span class="ds_hex">#F3EEEE</span></li>
+                                <li style="--c: #FFFFFF; --i: 9"><span class="ds_chip" aria-hidden="true"></span><code>white</code><span class="ds_hex">#FFFFFF</span></li>
+                                <li style="--c: #000000; --i: 10"><span class="ds_chip" aria-hidden="true"></span><code>black</code><span class="ds_hex">#000000</span></li>
+                            </ul>
+                        </div>
+                        <div class="ds_group ds_roles" data-ds-group>
+                            <p class="ds_label" id="ds-roles">Semantic roles <span aria-hidden="true">→</span><span class="visually-hidden">and the</span> primitives</p>
+                            <div class="ds_role-cols">
+                                <ul class="ds_role-list" aria-label="Surface and text">
+                                    <li style="--c: #151515; --i: 0"><span class="ds_dot" aria-hidden="true"></span><code>bg-primary</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">matt-black</code></li>
+                                    <li style="--c: #1F1F1F; --i: 1"><span class="ds_dot" aria-hidden="true"></span><code>bg-secondary</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">matt-black-secondary</code></li>
+                                    <li style="--c: #F3EEEE; --i: 2"><span class="ds_dot" aria-hidden="true"></span><code>txt-primary</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">off-white</code></li>
+                                    <li style="--c: #CEC8C8; --i: 3"><span class="ds_dot" aria-hidden="true"></span><code>txt-secondary</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">serious-gray</code></li>
+                                    <li style="--c: #FFFFFF; --i: 4"><span class="ds_dot" aria-hidden="true"></span><code>txt-body</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">white</code></li>
+                                    <li style="--c: #00EFFF; --i: 5"><span class="ds_dot" aria-hidden="true"></span><code>txt-accent</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">brain-freeze</code></li>
+                                    <li style="--c: #00EFFF; --i: 6"><span class="ds_dot" aria-hidden="true"></span><code>txt-link</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">brain-freeze</code></li>
+                                </ul>
+                                <ul class="ds_role-list" aria-label="Buttons">
+                                    <li style="--c: #FE0080; --i: 7"><span class="ds_dot" aria-hidden="true"></span><code>button-prim-bg</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">neon-rose</code></li>
+                                    <li style="--c: #FFFFFF; --i: 8"><span class="ds_dot" aria-hidden="true"></span><code>button-prim-txt</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">white</code></li>
+                                    <li style="--c: #1F1F1F; --i: 9"><span class="ds_dot" aria-hidden="true"></span><code>button-sec-bg</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">matt-black-secondary</code></li>
+                                    <li style="--c: #00EFFF; --i: 10"><span class="ds_dot" aria-hidden="true"></span><code>button-sec-txt</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">brain-freeze</code></li>
+                                </ul>
+                                <ul class="ds_role-list" aria-label="Borders and icons">
+                                    <li style="--c: #FE0080; --i: 11"><span class="ds_dot" aria-hidden="true"></span><code>border-brand</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">neon-rose</code></li>
+                                    <li style="--c: #00EFFF; --i: 12"><span class="ds_dot" aria-hidden="true"></span><code>border-accent</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">brain-freeze</code></li>
+                                    <li style="--c: #9EE8F8; --i: 13"><span class="ds_dot" aria-hidden="true"></span><code>border-muted</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">winter-wizard</code></li>
+                                    <li style="--c: #00EFFF; --i: 14"><span class="ds_dot" aria-hidden="true"></span><code>icon-accent</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><code class="ds_ref">brain-freeze</code></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ds_scales">
+                            <div class="ds_group ds_spacing" data-ds-group>
+                                <p class="ds_label" id="ds-spacing">Spacing · rem</p>
+                                <ul aria-labelledby="ds-spacing">
+                                    <li style="--v: .125; --i: 0"><code>3xs</code><span class="ds_num">.125</span><span class="ds_bar" aria-hidden="true"></span></li>
+                                    <li style="--v: .5; --i: 1"><code>2xs</code><span class="ds_num">.5</span><span class="ds_bar" aria-hidden="true"></span></li>
+                                    <li style="--v: .75; --i: 2"><code>xs</code><span class="ds_num">.75</span><span class="ds_bar" aria-hidden="true"></span></li>
+                                    <li style="--v: 1; --i: 3"><code>sm</code><span class="ds_num">1</span><span class="ds_bar" aria-hidden="true"></span></li>
+                                    <li style="--v: 1.5; --i: 4"><code>md</code><span class="ds_num">1.5</span><span class="ds_bar" aria-hidden="true"></span></li>
+                                    <li style="--v: 3; --i: 5"><code>lg</code><span class="ds_num">3</span><span class="ds_bar" aria-hidden="true"></span></li>
+                                    <li style="--v: 4; --i: 6"><code>xl</code><span class="ds_num">4</span><span class="ds_bar" aria-hidden="true"></span></li>
+                                    <li style="--v: 6; --i: 7"><code>section</code><span class="ds_num">6</span><span class="ds_bar" aria-hidden="true"></span></li>
+                                </ul>
+                            </div>
+                            <div class="ds_group ds_radius" data-ds-group>
+                                <p class="ds_label" id="ds-radius">Radius · px</p>
+                                <ul aria-labelledby="ds-radius">
+                                    <li style="--r: 8px; --i: 0"><span class="ds_box" aria-hidden="true"></span><span class="ds_cap"><code>sm</code> <span class="ds_num">8</span></span></li>
+                                    <li style="--r: 12px; --i: 1"><span class="ds_box" aria-hidden="true"></span><span class="ds_cap"><code>md</code> <span class="ds_num">12</span></span></li>
+                                    <li style="--r: 16px; --i: 2"><span class="ds_box" aria-hidden="true"></span><span class="ds_cap"><code>lg</code> <span class="ds_num">16</span></span></li>
+                                    <li style="--r: 32px; --i: 3"><span class="ds_box" aria-hidden="true"></span><span class="ds_cap"><code>xl</code> <span class="ds_num">32</span></span></li>
+                                    <li style="--r: 56px; --i: 4"><span class="ds_box" aria-hidden="true"></span><span class="ds_cap"><code>pill</code> <span class="ds_num">56</span></span></li>
+                                </ul>
+                                <p class="ds_note">Outline: <code>border-default</code>, 2 px, in <code>border-accent</code>.</p>
+                            </div>
+                            <div class="ds_group ds_type" data-ds-group>
+                                <p class="ds_label" id="ds-type">Type · rem</p>
+                                <ul class="ds_ramp" aria-labelledby="ds-type">
+                                    <li style="--s: .75; --i: 0"><span class="ds_aa" aria-hidden="true"><span>Aa</span></span><span class="ds_cap"><code>xs</code> <span class="ds_num">.75</span></span></li>
+                                    <li style="--s: 1; --i: 1"><span class="ds_aa" aria-hidden="true"><span>Aa</span></span><span class="ds_cap"><code>sm</code> <span class="ds_num">1</span></span></li>
+                                    <li style="--s: 1.25; --i: 2"><span class="ds_aa" aria-hidden="true"><span>Aa</span></span><span class="ds_cap"><code>md</code> <span class="ds_num">1.25</span></span></li>
+                                    <li style="--s: 1.5; --i: 3"><span class="ds_aa" aria-hidden="true"><span>Aa</span></span><span class="ds_cap"><code>lg</code> <span class="ds_num">1.5</span></span></li>
+                                    <li style="--s: 2.25; --i: 4"><span class="ds_aa" aria-hidden="true"><span>Aa</span></span><span class="ds_cap"><code>xl</code> <span class="ds_num">2.25</span></span></li>
+                                    <li style="--s: 3; --i: 5"><span class="ds_aa" aria-hidden="true"><span>Aa</span></span><span class="ds_cap"><code>xxl</code> <span class="ds_num">3</span></span></li>
+                                </ul>
+                                <ul class="ds_fonts">
+                                    <li style="--i: 6"><code>font-heading</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><span class="ds_face is-raleway">Raleway</span></li>
+                                    <li style="--i: 7"><code>font-body</code><span class="ds_to" aria-hidden="true">→</span><span class="visually-hidden"> uses </span><span class="ds_face is-league">League Spartan</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <figcaption class="shot_cap"><b>The system</b></figcaption>
+                </figure>
+            </div>
+            <div class="case_foot"><a class="case_back" href="#work">↑ All work</a></div>
+        </article>
+
+        <!-- ───────── 02 STMNT Wear ───────── -->
+        <article class="case wrap" id="stmnt-wear" data-lanes="ui" aria-labelledby="stmnt-wear-title">
+            <div class="case_head split">
+                <div class="case_meta">
+                    <p class="case_year label">2025–26</p>
+                    <p class="case_kicker"><span class="case_no" aria-hidden="true">02</span><span class="label">UI/UX · E-commerce</span></p>
+                    <span class="pill">Client · Live</span>
+                </div>
+                <div class="case_text">
+                    <div class="case_title-row">
+                        <h3 class="case_title" id="stmnt-wear-title"><a class="case_title-link" href="https://www.stmntwear.com/" target="_blank" rel="noopener" title="stmntwear.com">STMNT Wear<svg class="case_title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><span class="visually-hidden"> (live site, opens in a new tab)</span></a></h3>
+                        <span class="case_stack" role="list" aria-label="Tools"><span class="case_tool" role="listitem" data-tool="Figma"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-figma"/></svg><span class="visually-hidden">Figma</span></span><span class="case_tool" role="listitem" data-tool="Shopify"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shopify"/></svg><span class="visually-hidden">Shopify</span></span><span class="case_tool" role="listitem" data-tool="Claude Code"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-claude"/></svg><span class="visually-hidden">Claude Code</span></span></span>
+                    </div>
+                    <p class="case_lede">A UX audit, then a new homepage and product page, for a Shopify store selling athleisure to soccer players.</p>
+                    <dl class="case_facts">
+                        <dt>Role</dt><dd>UX audit, redesign of the homepage, product page and a few sections, theme build</dd>
+                    </dl>
+                    <div class="case_body">
+                        <p>A UX audit against a competitor brand came first. Then I redesigned the homepage, the product page and a few other sections, and built them as a customised Shopify (Dawn) theme. What changed:</p>
+                        <ul>
+                            <li>a full-bleed campaign photo instead of a studio&nbsp;cut-out;</li>
+                            <li>two clear calls to action;</li>
+                            <li>product cards with colour swatches and quick add;</li>
+                            <li>a mission section and a STMNT ↔ STATEMENT text animation, all built as custom theme sections.</li>
+                        </ul>
+                        <p>It shares neon rose and matt black with STMNT Studios, so one brand family now runs on two platforms: Webflow and Shopify.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="case_gallery">
+                <figure class="shot is-wide">
+                    <a class="shot_link" href="images/wear-home-arcade-full.webp" data-pswp-width="2800" data-pswp-height="1750" data-portrait="images/wear-home-arcade-portrait-1200.webp">
+                        <picture>
+                            <source media="(max-width: 700px)" srcset="images/wear-home-arcade-portrait-1200.webp" width="1200" height="1500">
+                            <img src="images/wear-home-arcade-1200.webp" srcset="images/wear-home-arcade-1200.webp 1200w, images/wear-home-arcade-full.webp 2800w" sizes="(max-width: 860px) calc(100vw - 40px), 1184px" width="1200" height="750" loading="lazy" decoding="async"
+                                 alt="STMNT Wear homepage on a black iPhone standing in a white arched arcade, in Safari: two players on a subway platform under the line Athleisure made for the modern soccer player, with the Gear up and Outfit your team buttons.">
+                        </picture>
+                    </a>
+                    <figcaption class="shot_cap"><b>Homepage (mockup)</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <a class="shot_link is-board" href="images/wear-before-after-full.webp" data-pswp-width="2400" data-pswp-height="1000">
+                        <img src="images/wear-before-after-1200.webp" srcset="images/wear-before-after-1200.webp 1200w, images/wear-before-after-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 1184px" width="1200" height="500" loading="lazy" decoding="async"
+                             alt="Before and after: the original theme with a studio cut-out and small buttons, next to the redesign with a full-bleed photo, a large headline and two clear buttons.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Before and after</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <div class="shot_stage is-board is-browser">
+                        <div class="browser_frame">
+                            <div class="browser_bar" aria-hidden="true"><i></i><i></i><i></i><span>stmntwear.com/products/stmnt-jacket</span></div>
+                            <video controls muted loop playsinline preload="none" width="1440" height="900" data-poster="media/wear-product-poster.webp" data-autoplay
+                                   aria-label="Screen recording of the STMNT Jacket product page on the live site, scrolled from the top to the footer: photo gallery, price, quantity, sizes, colour swatches, add to cart and the sections below.">
+                                <source src="media/wear-product-av1.mp4" type='video/mp4; codecs="av01.0.13M.08"'>
+                                <source src="media/wear-product.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <figcaption class="shot_cap"><b>Product page</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <div class="shot_stage is-board is-browser">
+                        <div class="browser_frame">
+                            <div class="browser_bar" aria-hidden="true"><i></i><i></i><i></i><span>stmntwear.com</span></div>
+                            <video controls muted loop playsinline preload="none" width="1440" height="900" data-poster="media/wear-statement-poster.webp" data-autoplay
+                                   aria-label="Screen recording of the mission section on the live homepage: the heading Make a STMNT opens, letter by letter, into Make a STATEMENT, and closes again.">
+                                <source src="media/wear-statement-av1.mp4" type='video/mp4; codecs="av01.0.13M.08"'>
+                                <source src="media/wear-statement.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <figcaption class="shot_cap"><b>STMNT ↔ STATEMENT</b></figcaption>
+                </figure>
+            </div>
+            <div class="case_foot"><a class="case_back" href="#work">↑ All work</a></div>
+        </article>
+
+        <!-- ───────── 03 Derby Weekend (unofficial Favbet concept) ───────── -->
+        <article class="case wrap" id="derby-weekend" data-lanes="graphic ai" aria-labelledby="derby-weekend-title">
+            <div class="case_head split">
+                <div class="case_meta">
+                    <p class="case_year label">2026</p>
+                    <p class="case_kicker"><span class="case_no" aria-hidden="true">03</span><span class="label">Graphic · AI</span></p>
+                    <span class="pill">Unofficial concept</span>
+                </div>
+                <div class="case_text">
+                    <div class="case_title-row">
+                        <h3 class="case_title" id="derby-weekend-title">Derby Weekend × Favbooster</h3>
+                        <span class="case_stack" role="list" aria-label="Tools"><span class="case_tool" role="listitem" data-tool="Affinity"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-affinity"/></svg><span class="visually-hidden">Affinity</span></span><span class="case_tool" role="listitem" data-tool="FLORA"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-flora"/></svg><span class="visually-hidden">FLORA</span></span><span class="case_tool" role="listitem" data-tool="Claude Code"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-claude"/></svg><span class="visually-hidden">Claude Code</span></span></span>
+                    </div>
+                    <p class="case_lede">A sportsbook campaign key visual, carried from one master to nine digital formats and an A2 print poster.</p>
+                    <p class="case_status">Unofficial concept in Favbet’s visual language. Not affiliated with Favbet. The copy is Croatian, as it would run in market.</p>
+                    <dl class="case_facts">
+                        <dt>Role</dt><dd>Concept, art direction, layout, print production</dd>
+                        <dt>Output</dt><dd>9 digital formats, each as JPEG, WebP and AVIF, with the WebP and AVIF files within each format’s size budget · an A2 CMYK press PDF with bleed, plus a&nbsp;PDF/X-4</dd>
+                        <dt>AI use</dt><dd>Key art generated in FLORA under my direction, then hand-finished. About $11 of generation for all the Favbet work, the Autumn Jackpot included.</dd>
+                    </dl>
+                    <div class="case_body">
+                        <p>One key visual became the 1920×757 web promo, Instagram story, portrait and square, five IAB display sizes, and an A2 poster that was laid out again for print rather than scaled up.</p>
+                        <p>The concept, art direction and final layouts are mine. The key art was generated with AI under my direction and hand-finished in Affinity, and a small script checks every export for pixel size, type contrast and file weight.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="case_gallery">
+                <figure class="shot is-wide">
+                    <a class="shot_link is-still" href="images/favbet-redo-promo-full.webp" data-pswp-width="1920" data-pswp-height="757">
+                        <img src="images/favbet-redo-promo-1200.webp" srcset="images/favbet-redo-promo-1200.webp 1200w, images/favbet-redo-promo-full.webp 1920w" sizes="(max-width: 860px) calc(100vw - 40px), 1184px" width="1200" height="473" loading="lazy" decoding="async"
+                             alt="Web promo key visual: voxel lettering reading Derbi vikenda on the left, two football boots around a ball in the centre, and on the right a black glass Favbooster plate of up to 1.50, with glass shards, above a glowing green Kladi se button.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Promo master</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <a class="shot_link is-still" href="images/favbet-redo-formats-full.webp" data-pswp-width="2400" data-pswp-height="1240">
+                        <img src="images/favbet-redo-formats-1200.webp" srcset="images/favbet-redo-formats-1200.webp 1200w, images/favbet-redo-formats-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 1184px" width="1200" height="620" loading="lazy" decoding="async"
+                             alt="Eight formats of the same key visual side by side: Instagram story, portrait and square, and the half page, skyscraper, rectangle, leaderboard and mobile banners.">
+                    </a>
+                    <figcaption class="shot_cap"><b>From one master</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link is-board" href="images/favbet-redo-print-full.webp" data-pswp-width="2400" data-pswp-height="1500">
+                        <img src="images/favbet-redo-print-1200.webp" srcset="images/favbet-redo-print-1200.webp 1200w, images/favbet-redo-print-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="750" loading="lazy" decoding="async"
+                             alt="A2 poster version with three close-ups: the voxel title lettering, the Favbooster up to 1.50 glass plate, and the green Kladi se button above the ball.">
+                    </a>
+                    <figcaption class="shot_cap"><b>A2 poster</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link is-fit" href="images/favbet-redo-context-full.webp" data-pswp-width="1920" data-pswp-height="1100" style="--ar: 16/10; --fit-bg: #080b18">
+                        <img class="is-fade-end" style="object-position: top" src="images/favbet-redo-context-1200.webp" srcset="images/favbet-redo-context-1200.webp 1200w, images/favbet-redo-context-full.webp 1920w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="688" loading="lazy" decoding="async"
+                             alt="The key visual composited into the hero slot of the favbet.hr homepage, above the Sport, Casino and Promotions tiles.">
+                    </a>
+                    <figcaption class="shot_cap"><b>In context (mockup)</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link" href="images/favbet-redo-life-match-full.webp" data-pswp-width="2400" data-pswp-height="1600">
+                        <img src="images/favbet-redo-life-match-1200.webp" srcset="images/favbet-redo-life-match-1200.webp 1200w, images/favbet-redo-life-match-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="800" loading="lazy" decoding="async"
+                             alt="A phone held in front of a TV showing a football match, with the Derby Weekend story on its screen: Derbi vikenda, a Favbooster of up to 1.50.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Match night (mockup)</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link" href="images/favbet-redo-life-sofa-full.webp" data-pswp-width="2400" data-pswp-height="1601">
+                        <img src="images/favbet-redo-life-sofa-1200.webp" srcset="images/favbet-redo-life-sofa-1200.webp 1200w, images/favbet-redo-life-sofa-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="800" loading="lazy" decoding="async"
+                             alt="A phone held up on a yellow sofa in the evening, string lights behind it, showing the Derby Weekend story: Derbi vikenda, a Favbooster of up to 1.50.">
+                    </a>
+                    <figcaption class="shot_cap"><b>On the sofa (mockup)</b></figcaption>
+                </figure>
+            </div>
+            <div class="case_foot"><a class="case_back" href="#work">↑ All work</a></div>
+        </article>
+
+        <!-- ───────── 04 Uštedi ───────── -->
+        <article class="case wrap" id="ustedi" data-lanes="graphic ui motion" aria-labelledby="ustedi-title">
+            <div class="case_head split">
+                <div class="case_meta">
+                    <p class="case_year label">2025–26</p>
+                    <p class="case_kicker"><span class="case_no" aria-hidden="true">04</span><span class="label">Brand · UI/UX · Motion</span></p>
+                    <span class="pill">Personal concept</span>
+                </div>
+                <div class="case_text">
+                    <div class="case_title-row">
+                        <h3 class="case_title" id="ustedi-title">Uštedi</h3>
+                        <span class="case_stack" role="list" aria-label="Tools"><span class="case_tool" role="listitem" data-tool="Figma"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-figma"/></svg><span class="visually-hidden">Figma</span></span><span class="case_tool" role="listitem" data-tool="Claude Code"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-claude"/></svg><span class="visually-hidden">Claude Code</span></span></span>
+                    </div>
+                    <p class="case_lede">A grocery price-comparison app: brand identity, UX and UI, on a Figma system of 146 variables.</p>
+                    <p class="case_status">Personal concept, never shipped. Prices are sample data, and store names and logos belong to their owners.</p>
+                    <dl class="case_facts">
+                        <dt>Role</dt><dd>Brand identity, UX flows, UI, design system, launch ad</dd>
+                        <dt>System</dt><dd>146 variables: Brand 50 · Alias 35 · Mapped 25 (light and dark) · Responsive 36 · 22 text styles in National Park</dd>
+                    </dl>
+                    <div class="case_body">
+                        <p>Build a shopping list and it finds the nearest store where most of it is cheapest. Uštedi means “save” in Croatian, so the € in the wordmark says what the product does.</p>
+                        <p>Wireframes came first, then the logo. The palette and type grew alongside the UI, and every value is a variable: 146 in four collections, with light and dark modes from one file. Every screen carries annotations for its font sizes and colour roles, so it can be built without guessing.</p>
+                        <p>The launch ad animates my own Figma screens on Figma’s timeline (taps, typing, screen transitions), then puts them on a 3D phone in Ultramock. The captions and end card are rendered from code on top.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="case_gallery">
+                <figure class="shot is-wide">
+                    <div class="shot_media">
+                        <video controls muted loop playsinline preload="none" width="1280" height="720" data-poster="media/ustedi-launch-ad-16x9-v10-poster.webp" data-autoplay
+                               aria-label="Uštedi launch ad, 16:9, 18 seconds, with music: the app on a 3D phone beside the lines One shopping list, Add what you need, Uštedi checks every store and Shop where it’s cheapest, then the end card Save on every list.">
+                            <source src="media/ustedi-launch-ad-16x9-v10-av1.mp4" type='video/mp4; codecs="av01.0.08M.08, mp4a.40.2"'>
+                            <source src="media/ustedi-launch-ad-16x9-v10.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <figcaption class="shot_cap"><b>Launch ad, 16:9</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <a class="shot_link is-board-ustedi" href="images/ustedi-hero-full.webp" data-pswp-width="2400" data-pswp-height="1500">
+                        <img src="images/ustedi-hero-1200.webp" srcset="images/ustedi-hero-1200.webp 1200w, images/ustedi-hero-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 1184px" width="1200" height="750" loading="lazy" decoding="async"
+                             alt="Three dark-mode app screens: the start screen with the Uštedi logo, a shopping list of eight items, and the nearest-store result with a map and store prices.">
+                    </a>
+                    <figcaption class="shot_cap"><b>App</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link" href="images/ustedi-life-home-full.webp" data-pswp-width="2400" data-pswp-height="1600">
+                        <img src="images/ustedi-life-home-1200.webp" srcset="images/ustedi-life-home-1200.webp 1200w, images/ustedi-life-home-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="800" loading="lazy" decoding="async"
+                             alt="A hand holding a phone in a kitchen, a bowl of bananas behind it, showing Uštedi’s nearest-store result: a dark map with store pins and the cheapest store’s prices.">
+                    </a>
+                    <figcaption class="shot_cap"><b>At home (mockup)</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link" href="images/ustedi-life-onthego-full.webp" data-pswp-width="2400" data-pswp-height="1601">
+                        <img src="images/ustedi-life-onthego-1200.webp" srcset="images/ustedi-life-onthego-1200.webp 1200w, images/ustedi-life-onthego-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="800" loading="lazy" decoding="async"
+                             alt="A hand holding a phone above an escalator, showing Uštedi’s shopping list: eight items, from broccoli to eggs, and a Find store button.">
+                    </a>
+                    <figcaption class="shot_cap"><b>On the go (mockup)</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link is-still" href="images/ustedi-logo-full.webp" data-pswp-width="2400" data-pswp-height="1600">
+                        <img src="images/ustedi-logo-1200.webp" srcset="images/ustedi-logo-1200.webp 1200w, images/ustedi-logo-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="800" loading="lazy" decoding="async"
+                             alt="The Uštedi logo, a price-tag mark and a wordmark with a euro sign for the E, on twelve light, purple and dark backgrounds.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Logo</b></figcaption>
+                </figure>
+                <figure class="shot">
+                    <a class="shot_link is-board-ustedi" href="images/ustedi-system-full.webp" data-pswp-width="2400" data-pswp-height="1600">
+                        <img src="images/ustedi-system-1200.webp" srcset="images/ustedi-system-1200.webp 1200w, images/ustedi-system-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 576px" width="1200" height="800" loading="lazy" decoding="async"
+                             alt="The same shopping-list screen in light and dark mode, next to four cards: Brand 50, Alias 35, Mapped 25 (light and dark) and Responsive 36 variables.">
+                    </a>
+                    <figcaption class="shot_cap"><b>System</b></figcaption>
+                </figure>
+            </div>
+            <div class="case_foot"><a class="case_back" href="#work">↑ All work</a></div>
+        </article>
+
+        <!-- ───────── 05 AI production & motion (unofficial Favbet concept) ───────── -->
+        <article class="case wrap" id="ai-production" data-lanes="ai motion graphic" aria-labelledby="ai-production-title">
+            <div class="case_head split">
+                <div class="case_meta">
+                    <p class="case_year label">2026</p>
+                    <p class="case_kicker"><span class="case_no" aria-hidden="true">05</span><span class="label">AI imagery · Motion</span></p>
+                    <span class="pill">Unofficial concept</span>
+                </div>
+                <div class="case_text">
+                    <div class="case_title-row">
+                        <h3 class="case_title" id="ai-production-title">AI production &amp; motion</h3>
+                        <span class="case_stack" role="list" aria-label="Tools"><span class="case_tool" role="listitem" data-tool="FLORA"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-flora"/></svg><span class="visually-hidden">FLORA</span></span><span class="case_tool" role="listitem" data-tool="Affinity"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-affinity"/></svg><span class="visually-hidden">Affinity</span></span><span class="case_tool" role="listitem" data-tool="Claude Code"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-claude"/></svg><span class="visually-hidden">Claude Code</span></span></span>
+                    </div>
+                    <p class="case_lede">AI speeds it up. I decide. The production system behind two unofficial Favbet pieces: the Derby Weekend campaign, and the Autumn Jackpot casino key visual with its six-second loop.</p>
+                    <p class="case_status">Unofficial concept in Favbet’s visual language. Not affiliated with Favbet.</p>
+                    <dl class="case_facts">
+                        <dt>Role</dt><dd>Art direction, production pipeline and QA rules, motion</dd>
+                        <dt>AI cost</dt><dd>About $11 of generation for all the Favbet work, Derby Weekend included</dd>
+                    </dl>
+                    <div class="case_body">
+                        <p>Instead of resizing every format by hand, I built a small production system:</p>
+                        <ol class="case_steps">
+                            <li><span><b>Art direction.</b> Generations in FLORA (Nano Banana, FLUX, Ideogram, Topaz). I choose, or regenerate.</span></li>
+                            <li><span><b>One source.</b> A tokens file: RGB and CMYK colour, four type sizes, safe zones and the legal line.</span></li>
+                            <li><span><b>Layout.</b> Scripts drive Affinity and lay out every format from one key visual.</span></li>
+                            <li><span><b>QA gate.</b> Every export is checked for pixel size, type contrast, resolution and file weight.</span></li>
+                            <li><span><b>Finish.</b> I hand-finish every artboard in Affinity, then export.</span></li>
+                        </ol>
+                        <p>Claude Code wrote the code under my direction. The concept, the choice between generations, the layouts and the hand-finishing stay mine. When an image is wrong, I regenerate it rather than patch it.</p>
+                        <p>The loop renders its type, coins and light from code (HTML, headless Chrome, ffmpeg), frame by frame, over a forest background I animated with AI (Luma) and cut to loop without a seam.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="case_gallery">
+                <figure class="shot is-wide">
+                    <a class="shot_link is-still" href="images/ai-directions-full.webp" data-pswp-width="2400" data-pswp-height="720">
+                        <img src="images/ai-directions-1200.webp" srcset="images/ai-directions-1200.webp 1200w, images/ai-directions-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 1184px" width="1200" height="360" loading="lazy" decoding="async"
+                             alt="Five art directions for the casino key visual: neon, monument, relic, thin legs, and the chosen pink crown standing in autumn leaves.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Art direction</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <div class="shot_stage">
+                        <video controls muted loop playsinline preload="none" width="720" height="1280" data-poster="media/autumn-jackpot-loop-v03-poster.webp" data-autoplay
+                               aria-label="Autumn Jackpot loop, 6 seconds, no sound: light moves through a misty autumn forest behind a pink crown in the leaves, a tournament prize counter counts up to 50,000 euros, and a green Start playing button pulses.">
+                            <source src="media/autumn-jackpot-loop-v03.webm" type="video/webm">
+                            <source src="media/autumn-jackpot-loop-v03.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <figcaption class="shot_cap"><b>“<span lang="hr">Jesenski jackpot</span>” (Autumn Jackpot)</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <a class="shot_link is-still" href="images/ai-icons-full.webp" data-pswp-width="2400" data-pswp-height="900">
+                        <img src="images/ai-icons-1200.webp" srcset="images/ai-icons-1200.webp 1200w, images/ai-icons-full.webp 2400w" sizes="(max-width: 860px) calc(100vw - 40px), 1184px" width="1200" height="450" loading="lazy" decoding="async"
+                             alt="Five glossy 3D icons in pink and blue: a crown, a football, a casino chip, a betting ticket and a sparkle.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Icons</b></figcaption>
+                </figure>
+                <figure class="shot is-wide">
+                    <a class="shot_link is-fit" href="images/ai-patterns-full.webp" data-pswp-width="1720" data-pswp-height="992" style="--ar: 1720/992">
+                        <img src="images/ai-patterns-1200.webp" srcset="images/ai-patterns-1200.webp 1200w, images/ai-patterns-full.webp 1720w" sizes="(max-width: 860px) calc(100vw - 40px), 1184px" width="1200" height="692" loading="lazy" decoding="async"
+                             alt="Four triangle patterns built from the crown in the logo, from loud pink, blue and white to a quiet tonal navy.">
+                    </a>
+                    <figcaption class="shot_cap"><b>Patterns</b></figcaption>
+                </figure>
+            </div>
+            <div class="case_foot"><a class="case_back" href="#work">↑ All work</a></div>
+        </article>
+
+        <!-- ───────── Experience ───────── -->
+        <section class="about wrap" id="experience" aria-labelledby="experience-title">
+            <h2 class="about_title" id="experience-title">Experience</h2>
+            <div class="about_grid">
+                <div class="about_block">
+                    <h3>Work</h3>
+                    <ul class="cv_list">
+                        <li><span class="cv_when">2025–now</span><span class="cv_what"><b>Web &amp; UI Designer, independent (91EDITION)</b>Zagreb, remote for US clients: STMNT Studios and STMNT Wear (live), Silvarra Blue Ridge (in staging, not launched yet).</span></li>
+                        <li><span class="cv_when">2016–2025</span><span class="cv_what"><b>Graphic Designer, Promosapiens</b>A Zagreb digital marketing agency. The only designer in a fully remote team of ten: key visuals for 30+ clients, mainly FMCG and pharma, taken to display, social, web, POS and print, plus brand identities, a few websites and a mobile-app UI. Client names are under NDA: a global beverage brand, one of Croatia’s largest food groups, a multinational pharmaceutical company.</span></li>
+                        <li><span class="cv_when">2010–2016</span><span class="cv_what"><b>Freelance logo and identity design</b>For small businesses. Also Assistant Wedding Photographer at Mihoci Studios,&nbsp;2015–16.</span></li>
+                    </ul>
+                    <h3 class="about_sub">Education and languages</h3>
+                    <div class="about_text">
+                        <p>MSc Information and Communication Systems (2015) and BSc Informatics (2012), Faculty of Informatics and Digital Technologies, University of Rijeka.</p>
+                        <p>Croatian (native) · English (C2, EFSET 74).</p>
+                    </div>
+                </div>
+                <div class="about_block">
+                    <h3>What I work with</h3>
+                    <ul class="cv_list">
+                        <li><span class="cv_when">Design</span><span class="cv_what">Figma (variables and modes, components, auto layout), Affinity, Photoshop, Illustrator, InDesign</span></li>
+                        <li><span class="cv_when">Web</span><span class="cv_what">Webflow (CMS, interactions), Shopify themes, HTML and CSS, Pen; Google Ads (search) and SEO</span></li>
+                        <li><span class="cv_when">Print</span><span class="cv_what">Press-ready posters, POS and multi-page catalogues; POS artwork on printers’ die-lines, on-pack promotions, label and pack adaptations</span></li>
+                        <li><span class="cv_when">AI</span><span class="cv_what">FLORA (GPT Image, Nano Banana, FLUX, Ideogram, Topaz), Midjourney, Firefly, Claude Code; generation cost tracked per project</span></li>
+                        <li><span class="cv_when">Motion</span><span class="cv_what">Loops rendered from code (HTML, headless Chrome, ffmpeg); app promos keyframed in Figma and animated in Ultramock; Premiere Pro, After Effects basics</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ───────── Footer ───────── -->
+    <footer class="footer wrap" id="contact">
+        <div class="footer_inner">
+            <p class="footer_cta">Let’s talk.</p>
+            <p class="footer_line">Open to full-time roles, hybrid in Zagreb or remote, and I can start right away. The fastest way to reach me is email.</p>
+            <ul class="footer_links">
+                <li><a class="link" href="mailto:peter.zivkovic@gmail.com">peter.zivkovic@gmail.com</a></li>
+                <li><a class="link" href="https://www.linkedin.com/in/petarz/" target="_blank" rel="noopener">linkedin.com/in/petarz<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+            </ul>
+            <p class="footer_small">© 2026 Petar Živković, a brand and digital designer in Zagreb, Croatia. Concept work is labelled as such, and agency clients stay under NDA.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js?v=1.2.17" defer></script>
 </body>
 </html>
