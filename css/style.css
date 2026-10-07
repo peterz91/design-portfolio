@@ -76,25 +76,26 @@
 @property --stack-hover { syntax: '<color>'; inherits: true; initial-value: #2e5bba; }
 @property --board { syntax: '<color>'; inherits: true; initial-value: #e7e5e0; }
 @property --board-ustedi { syntax: '<color>'; inherits: true; initial-value: #dcd9ee; }
-:root[data-theme="dark"] { --theme-ink: 0s; }
-/* Going dark is instant. Going light, the page rises through a dawn instead of a flat grey (Petar, 6–7 Oct): the
-   surfaces run the keyframes below over 4 s, Petar's gradient read from black: navy, slate, sky blue, peach, white.
-   js/script.js part 1 adds .theme-dawn only when the theme turns light from dark, so a page that loads light never
-   animates. The ink (text, links, and the inverted chip, row and icon-stack fills) swaps in 0.4 s from 1.6 to 2 s
-   midpoint, so text never fades into its background. Reduced motion: both off, an instant switch. */
+:root[data-theme="dark"] { --theme-ink: .4s ease-in-out 1.9s; }
+/* A theme change runs through a sky instead of a flat grey (Petar, 6–7 Oct): the surfaces run the keyframes below
+   over 4 s, Petar's gradient read from black (navy, mauve, peach, white); forwards going light (.theme-dawn),
+   backwards going dark (.theme-dusk). js/script.js part 1 adds the class only on a real switch, so a page never
+   animates on load. The ink (text, links, and the inverted chip, row and icon-stack fills) swaps in 0.4 s: from 1.7
+   to 2.1 s at dawn, from 1.9 to 2.3 s at dusk (the same colours, mirrored), so text never fades into its background. Reduced motion: both off, an instant switch. */
 :root {
-    --theme-ink: .4s ease-in-out 1.6s;
+    --theme-ink: .4s ease-in-out 1.7s;
     transition: --text var(--theme-ink), --text-2 var(--theme-ink), --text-3 var(--theme-ink), --accent var(--theme-ink),
         --chip-on-bg var(--theme-ink), --chip-on-text var(--theme-ink), --row-hover-bg var(--theme-ink),
         --row-hover-fg var(--theme-ink), --row-hover-muted var(--theme-ink), --stack-bg var(--theme-ink),
         --stack-hover var(--theme-ink);
 }
 :root.theme-dawn { animation: theme-dawn 4s linear; }
+:root.theme-dusk { animation: theme-dawn 4s linear reverse; }
+:root.theme-instant { transition: none !important; }   /* a double click on the theme button (js/script.js part 1) */
 @keyframes theme-dawn {
     0% { --bg: #0e0f11; --surface: #17181b; --line: #2a2c31; --board: #18191c; --board-ustedi: #19172b; }
     20% { --bg: #1e2e68; --surface: #1e2e68; --line: #39477a; --board: #1e2e68; --board-ustedi: #1e2e68; }
-    40% { --bg: #576c98; --surface: #576c98; --line: #6b7ea4; --board: #576c98; --board-ustedi: #576c98; }
-    60% { --bg: #87a7d1; --surface: #87a7d1; --line: #7c9ac0; --board: #87a7d1; --board-ustedi: #87a7d1; }
+    50% { --bg: #8a778a; --surface: #8a778a; --line: #988798; --board: #8a778a; --board-ustedi: #8a778a; }
     80% { --bg: #fee0b6; --surface: #fee0b6; --line: #eacea7; --board: #fee0b6; --board-ustedi: #fee0b6; }
     100% { --bg: #ffffff; --surface: #f4f4f2; --line: #e2e2de; --board: #e7e5e0; --board-ustedi: #dcd9ee; }
 }
@@ -195,9 +196,28 @@ strong, b { font-weight: 600; color: var(--text); }
 .hero_stack-item:hover { background: var(--stack-hover); }
 .hero_stack-item svg { width: 20px; height: 20px; }
 
-.theme-icon-moon { display: none; }
-:root[data-theme="dark"] .theme-icon-sun { display: none; }
-:root[data-theme="dark"] .theme-icon-moon { display: block; }
+/* The theme button's sun and moon sit opposite each other on one wheel that turns about a point 30 px below the
+   button's centre, like the sky as the earth turns. The one in use is at the top; the other is below the horizon
+   (the button's edges clip it), and the wheel is big enough that one leaves as the other comes in. Each theme change
+   turns it half a revolution with the sky (4 s), always the same way: what is up sets to the lower right, the other
+   rises from the lower left, both kept upright. */
+@property --orbit { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+[data-theme-toggle] { position: relative; overflow: hidden; }
+[data-theme-toggle] svg {
+    grid-area: 1 / 1;
+    transform: translateY(30px) rotate(var(--orbit)) translateY(-30px) rotate(calc(-1 * var(--orbit)));
+}
+.theme-icon-moon { --orbit: 180deg; }
+:root[data-theme="dark"] .theme-icon-sun { --orbit: 180deg; }
+:root[data-theme="dark"] .theme-icon-moon { --orbit: 0deg; }
+:root.theme-dawn .theme-icon-sun { animation: sun-rise 4s ease-in-out; }
+:root.theme-dawn .theme-icon-moon { animation: moon-set 4s ease-in-out; }
+@keyframes sun-rise { from { --orbit: -180deg; } to { --orbit: 0deg; } }
+@keyframes moon-set { from { --orbit: 0deg; } to { --orbit: 180deg; } }
+:root.theme-dusk .theme-icon-sun { animation: sun-set 4s ease-in-out; }
+:root.theme-dusk .theme-icon-moon { animation: moon-rise 4s ease-in-out; }
+@keyframes sun-set { from { --orbit: 0deg; } to { --orbit: 180deg; } }
+@keyframes moon-rise { from { --orbit: -180deg; } to { --orbit: 0deg; } }
 
 /* One size throughout: weight and colour carry the hierarchy. */
 .hero_text { font-size: var(--fs); line-height: 1.6; }
@@ -798,6 +818,48 @@ strong, b { font-weight: 600; color: var(--text); }
 .cv_list li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 16px; align-items: baseline; font-size: var(--fs); }
 .cv_when { font-size: var(--fs-label); color: var(--text-3); font-variant-numeric: tabular-nums; }
 .cv_what b { display: block; font-weight: 500; }
+
+/* "What I work with" (js/script.js part 8). The category name is a button. Hovered, its letters tilt a little on
+   their x, y and z axes (each its own way, --rx/--ry/--rz/--ty from the script) and ease to bold. Open, they snap
+   straight; the text shrinks into the start of its first line, and the tools' icons spring out of that point into
+   a row, 0 to 24 px each, one after another. Closing plays it backwards: icons first, then the text springs back.
+   The text keeps its room, so nothing below moves. Reduced motion: the global rule makes it an instant swap. */
+.cv_list {
+    --spring: linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121, 1.149 24.3%,
+        1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%,
+        0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1);
+}
+.cv_toggle { all: unset; display: inline-flex; cursor: pointer; perspective: 140px; }
+.cv_toggle:focus-visible { outline: 2px solid var(--stack-hover); outline-offset: 3px; }
+.cv_letter {
+    display: inline-block; white-space: pre;
+    --ease: cubic-bezier(.22, 1, .36, 1);   /* soft ease-out: tilt and weight move together, a letter at a time */
+    transition: transform .6s var(--ease) calc(var(--li) * 22ms), font-weight .6s var(--ease) calc(var(--li) * 22ms), color .4s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+    .cv_toggle:hover .cv_letter {
+        transform: translateY(var(--ty)) rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz));
+        font-weight: 600; color: var(--text);
+    }
+}
+.cv_toggle:focus-visible .cv_letter { font-weight: 600; color: var(--text); }
+.cv_list li.is-open .cv_toggle .cv_letter { transform: none; font-weight: 600; color: var(--text); transition: transform .45s var(--ease), font-weight .45s var(--ease), color .4s ease; }
+
+.cv_what { position: relative; }
+.cv_text { display: block; transform-origin: 0 .8em; transition: transform .6s var(--spring) .28s, opacity .2s ease .28s; }
+.cv_list li.is-open .cv_text { transform: scale(0); opacity: 0; transition: transform .32s cubic-bezier(.55, 0, .8, .2), opacity .25s ease .07s; }
+.cv_tools { position: absolute; left: 0; top: 0; height: 24px; pointer-events: none; }
+.cv_tools .cv_tool {
+    position: absolute; left: 0; top: 0; color: var(--text);
+    transform: translateX(0) scale(0);
+    transition: transform .3s cubic-bezier(.55, 0, .8, .2) calc(var(--back) * 25ms), color .2s ease;
+}
+.cv_list li.is-open .cv_tools { pointer-events: auto; }
+.cv_list li.is-open .cv_tools .cv_tool {
+    transform: translateX(calc(var(--i) * 34px)) scale(1);
+    transition: transform .75s var(--spring) calc(.2s + var(--i) * 45ms), color .2s ease;
+}
+.cv_tool svg { display: block; width: 24px; height: 24px; fill: currentColor; }
 
 .about_block h3.about_sub { margin-top: 36px; }
 

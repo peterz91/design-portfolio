@@ -6,7 +6,8 @@
 // 4. autoplay for the muted loops while they are on screen,
 // 5. the index that folds into a sticky project bar,
 // 6. the STMNT system board, played in as it scrolls into view,
-// 7. Escape for the tool-name labels after each case title (the labels themselves are CSS).
+// 7. Escape for the tool-name labels after each case title (the labels themselves are CSS),
+// 8. "What I work with": each category name opens into the icons of its tools.
 
 (function () {
     'use strict';
@@ -23,12 +24,12 @@
     }
 
     function applyTheme(theme) {
-        // Only touch the root when the theme really changes: it restyles the whole page. Turning light from dark
-        // runs the dawn (.theme-dawn, css/style.css); restarted if it is already running, cut short by going dark.
+        // Only touch the root when the theme really changes: it restyles the whole page. A switch runs the sky
+        // (css/style.css): .theme-dawn going light, .theme-dusk going dark; a new switch restarts it.
         const was = root.getAttribute('data-theme');
         if (was !== theme) {
-            root.classList.remove('theme-dawn');
-            if (was === 'dark' && theme === 'light') { void root.offsetWidth; root.classList.add('theme-dawn'); }
+            root.classList.remove('theme-dawn', 'theme-dusk');
+            if (was === 'dark' || was === 'light') { void root.offsetWidth; root.classList.add(theme === 'light' ? 'theme-dawn' : 'theme-dusk'); }
             root.setAttribute('data-theme', theme);
         }
         if (toggle) {
@@ -39,11 +40,19 @@
 
     applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
     root.addEventListener('animationend', function (e) {
-        if (e.target === root && e.animationName === 'theme-dawn') root.classList.remove('theme-dawn');
+        if (e.target === root && e.animationName === 'theme-dawn') root.classList.remove('theme-dawn', 'theme-dusk');
     });
 
     if (toggle) {
-        toggle.addEventListener('click', function () {
+        toggle.addEventListener('click', function (e) {
+            // A double click lands at once: the first click has already switched the theme and started the sky,
+            // so the second (e.detail 2) skips the rest instead of switching back.
+            if (e.detail > 1) {
+                root.classList.remove('theme-dawn', 'theme-dusk');
+                root.classList.add('theme-instant');   // also cuts the ink's transition short
+                requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove('theme-instant'); }); });
+                return;
+            }
             const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             applyTheme(next);
             try { localStorage.setItem('theme', next); } catch (e) { /* private mode: fine */ }
@@ -646,5 +655,70 @@
         if (!tool) return;
         tool.classList.add('is-dismissed');
         tool.addEventListener('mouseleave', function () { tool.classList.remove('is-dismissed'); }, { once: true });
+    });
+    // ── 8. What I work with ─────────────────────────────────────
+    // Each category name becomes a button. Hovered, its letters tilt a little on their x, y and z axes and go bold
+    // (CSS). Clicked, the letters snap back, the text beside it shrinks into the start of its first line, and the
+    // tools' icons pop out of that point into a row; clicked again, everything goes back. The tools come from the
+    // row's data-tools ("icon|Name, …", icons from the sprite). Without JS the rows stay plain text.
+    document.querySelectorAll('.cv_list li[data-tools]').forEach(function (li, n) {
+        const when = li.querySelector('.cv_when');
+        const what = li.querySelector('.cv_what');
+        const name = when.textContent.trim();
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'cv_toggle';
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-controls', 'cv-tools-' + n);
+        button.setAttribute('aria-label', name + ', tools');
+        // A fixed, uneven tilt per letter (no randomness, so it is the same on every visit).
+        Array.from(name).forEach(function (ch, i) {
+            const letter = document.createElement('span');
+            letter.className = 'cv_letter';
+            letter.setAttribute('aria-hidden', 'true');
+            letter.textContent = ch;
+            const k = (i * 7 + n * 3) % 5 - 2, j = (i * 3 + n * 5 + 1) % 5 - 2;
+            letter.style.setProperty('--rx', (k * 9) + 'deg');
+            letter.style.setProperty('--ry', (j * 10) + 'deg');
+            letter.style.setProperty('--rz', ((k + j) * 2.5) + 'deg');
+            letter.style.setProperty('--ty', (j * 0.7).toFixed(1) + 'px');
+            letter.style.setProperty('--li', i);
+            button.appendChild(letter);
+        });
+        when.textContent = '';
+        when.appendChild(button);
+
+        const text = document.createElement('span');
+        text.className = 'cv_text';
+        while (what.firstChild) text.appendChild(what.firstChild);
+        what.appendChild(text);
+
+        const list = document.createElement('span');
+        list.className = 'cv_tools';
+        list.id = 'cv-tools-' + n;
+        list.setAttribute('role', 'list');
+        list.setAttribute('aria-label', name + ' tools');
+        list.setAttribute('aria-hidden', 'true');
+        const tools = li.getAttribute('data-tools').split(',').map(function (t) { return t.trim().split('|'); });
+        tools.forEach(function (t, i) {
+            const tool = document.createElement('span');
+            tool.className = 'case_tool cv_tool';
+            tool.setAttribute('role', 'listitem');
+            tool.setAttribute('data-tool', t[1]);
+            tool.style.setProperty('--i', i);
+            tool.style.setProperty('--back', tools.length - 1 - i);
+            tool.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-' + t[0] + '"/></svg><span class="visually-hidden"></span>';
+            tool.lastChild.textContent = t[1];
+            list.appendChild(tool);
+        });
+        what.appendChild(list);
+
+        button.addEventListener('click', function () {
+            const open = !li.classList.contains('is-open');
+            li.classList.toggle('is-open', open);
+            button.setAttribute('aria-expanded', String(open));
+            list.setAttribute('aria-hidden', String(!open));
+            text.setAttribute('aria-hidden', String(open));
+        });
     });
 })();
