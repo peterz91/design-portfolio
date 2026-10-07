@@ -23,8 +23,14 @@
     }
 
     function applyTheme(theme) {
-        // Only touch the root when the theme really changes: it restyles the whole page.
-        if (root.getAttribute('data-theme') !== theme) root.setAttribute('data-theme', theme);
+        // Only touch the root when the theme really changes: it restyles the whole page. Turning light from dark
+        // runs the dawn (.theme-dawn, css/style.css); restarted if it is already running, cut short by going dark.
+        const was = root.getAttribute('data-theme');
+        if (was !== theme) {
+            root.classList.remove('theme-dawn');
+            if (was === 'dark' && theme === 'light') { void root.offsetWidth; root.classList.add('theme-dawn'); }
+            root.setAttribute('data-theme', theme);
+        }
         if (toggle) {
             // A toggle button: the label stays "Dark theme", aria-pressed says whether it's on.
             toggle.setAttribute('aria-pressed', String(theme === 'dark'));
@@ -32,6 +38,9 @@
     }
 
     applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+    root.addEventListener('animationend', function (e) {
+        if (e.target === root && e.animationName === 'theme-dawn') root.classList.remove('theme-dawn');
+    });
 
     if (toggle) {
         toggle.addEventListener('click', function () {

@@ -76,18 +76,27 @@
 @property --stack-hover { syntax: '<color>'; inherits: true; initial-value: #2e5bba; }
 @property --board { syntax: '<color>'; inherits: true; initial-value: #e7e5e0; }
 @property --board-ustedi { syntax: '<color>'; inherits: true; initial-value: #dcd9ee; }
-:root[data-theme="dark"] { --theme-fade: 0s; --theme-ink: 0s; }
-/* Going light, the page surfaces fade over the full 4 s. The ink (text, links, and the inverted chip, row and icon-stack
-   fills) changes in 0.4 s centred on the 2 s mark, where the surfaces pass mid-grey, so text never fades into its background. */
+:root[data-theme="dark"] { --theme-ink: 0s; }
+/* Going dark is instant. Going light, the page rises through a dawn instead of a flat grey (Petar, 6–7 Oct): the
+   surfaces run the keyframes below over 4 s, Petar's gradient read from black: navy, slate, sky blue, peach, white.
+   js/script.js part 1 adds .theme-dawn only when the theme turns light from dark, so a page that loads light never
+   animates. The ink (text, links, and the inverted chip, row and icon-stack fills) swaps in 0.4 s from 1.6 to 2 s
+   midpoint, so text never fades into its background. Reduced motion: both off, an instant switch. */
 :root {
-    --theme-fade: 4s ease-in-out;
-    --theme-ink: .4s ease-in-out 1.8s;
-    transition: --bg var(--theme-fade), --surface var(--theme-fade), --line var(--theme-fade),
-        --board var(--theme-fade), --board-ustedi var(--theme-fade),
-        --text var(--theme-ink), --text-2 var(--theme-ink), --text-3 var(--theme-ink), --accent var(--theme-ink),
+    --theme-ink: .4s ease-in-out 1.6s;
+    transition: --text var(--theme-ink), --text-2 var(--theme-ink), --text-3 var(--theme-ink), --accent var(--theme-ink),
         --chip-on-bg var(--theme-ink), --chip-on-text var(--theme-ink), --row-hover-bg var(--theme-ink),
         --row-hover-fg var(--theme-ink), --row-hover-muted var(--theme-ink), --stack-bg var(--theme-ink),
         --stack-hover var(--theme-ink);
+}
+:root.theme-dawn { animation: theme-dawn 4s linear; }
+@keyframes theme-dawn {
+    0% { --bg: #0e0f11; --surface: #17181b; --line: #2a2c31; --board: #18191c; --board-ustedi: #19172b; }
+    20% { --bg: #1e2e68; --surface: #1e2e68; --line: #39477a; --board: #1e2e68; --board-ustedi: #1e2e68; }
+    40% { --bg: #576c98; --surface: #576c98; --line: #6b7ea4; --board: #576c98; --board-ustedi: #576c98; }
+    60% { --bg: #87a7d1; --surface: #87a7d1; --line: #7c9ac0; --board: #87a7d1; --board-ustedi: #87a7d1; }
+    80% { --bg: #fee0b6; --surface: #fee0b6; --line: #eacea7; --board: #fee0b6; --board-ustedi: #fee0b6; }
+    100% { --bg: #ffffff; --surface: #f4f4f2; --line: #e2e2de; --board: #e7e5e0; --board-ustedi: #dcd9ee; }
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
