@@ -189,12 +189,15 @@ strong, b { font-weight: 600; color: var(--text); }
     width: 40px; height: auto;
     display: grid; place-items: center;
     background: var(--stack-bg);
+    /* Hover: a blue circle grows from the top-left corner, like the filter chips' fill (Petar, 8 Oct). */
+    background-image: radial-gradient(circle farthest-corner at 0 0, var(--stack-hover) calc(var(--stack-fill) - 1px), transparent var(--stack-fill));
     color: var(--bg);
     border: 0; cursor: pointer;
     text-decoration: none;
-    transition: background-color .2s ease;
+    transition: --stack-fill .4s cubic-bezier(.45, 0, .7, .45);
 }
-.hero_stack-item:hover { background: var(--stack-hover); }
+@property --stack-fill { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
+.hero_stack-item:hover, .hero_stack-item:focus-visible { --stack-fill: 104%; }
 .hero_stack-item svg { width: 20px; height: 20px; }
 
 /* The theme button's sun and moon sit opposite each other on one wheel that turns about a point 30 px below the
@@ -254,8 +257,15 @@ strong, b { font-weight: 600; color: var(--text); }
     padding: 6px 12px;
     cursor: pointer;
     line-height: 1.3;
-    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+    /* The selected fill: a circle from the top-left corner (--chip-fill, 0 → past the far corner). */
+    background-image: radial-gradient(circle farthest-corner at 0 0, var(--chip-on-bg) calc(var(--chip-fill) - 1px), transparent var(--chip-fill));
+    background-origin: border-box;
+    transition: color .11s ease .24s, border-color .12s ease .28s, --chip-fill .4s cubic-bezier(.45, 0, .7, .45);
 }
+/* Selecting grows the fill on an ease-in curve over 0.4 s: it starts slow and ends faster (Petar, 8 Oct). The text
+   changes colour when the circle crosses it (about 0.25 s) and the border at the end, both ways, so text never sits on
+   its own colour. */
+@property --chip-fill { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
 .work_chip { position: relative; }
 /* Four 1px lines that draw the border in turn: top (left → right), right (down), bottom (right → left), left (up). */
 .work_chip::before {
@@ -278,14 +288,18 @@ strong, b { font-weight: 600; color: var(--text); }
     100% { background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%; }
 }
 .work_chip:focus-visible { outline: 2px solid var(--stack-hover); outline-offset: 2px; color: var(--stack-hover); }   /* visible on the dark selected chip too */
-.work_chip:focus-visible::before { opacity: 1; animation: chip-trace .4s linear both; }
+.work_chip:focus-visible::before { opacity: 1; animation: chip-trace .34s linear both; }
 /* Hover traces only the chips you can switch to; the selected one stays still. */
 @media (hover: hover) and (pointer: fine) {
-    .work_chip:not([aria-pressed="true"]):hover { color: var(--stack-hover); }
-    .work_chip:not([aria-pressed="true"]):hover::before { opacity: 1; animation: chip-trace .4s linear both; }
+    .work_chip:not([aria-pressed="true"]):hover { color: var(--stack-hover); transition: color .2s ease, border-color .12s ease .28s, --chip-fill .4s cubic-bezier(.45, 0, .7, .45); }
+    .work_chip:not([aria-pressed="true"]):hover::before { opacity: 1; animation: chip-trace .34s linear both; }
 }
 .work_chip[aria-pressed="true"]:focus-visible { color: var(--chip-on-text); }
-.work_chip[aria-pressed="true"] { background: var(--chip-on-bg); color: var(--chip-on-text); border-color: var(--chip-on-bg); cursor: default; }
+.work_chip[aria-pressed="true"] {
+    --chip-fill: 104%;
+    color: var(--chip-on-text); border-color: var(--chip-on-bg); cursor: default;
+    transition: color .11s ease .256s, border-color .12s ease .272s, --chip-fill .4s cubic-bezier(.45, 0, .7, .45);
+}
 
 .work_list { list-style: none; }
 
@@ -311,12 +325,15 @@ strong, b { font-weight: 600; color: var(--text); }
     inset: -1px -16px -1px;
     z-index: -1;
     background: var(--row-hover-bg);
-    opacity: 0;
-    transform: scaleY(.86);
-    transition: opacity .28s ease, transform .4s cubic-bezier(.2, .7, .2, 1);
+    /* A wipe on the y axis only (Petar, 8 Oct): hovered, it comes down from the top line; left, it goes back up the
+       way it came, into the top line. Ease-in-out: it eases off the line and into the end, both ways. */
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+    transition: transform .36s cubic-bezier(.65, 0, .35, 1);
 }
-/* Each text element moves on its own; the hover rules below stagger them left to right. */
-.work_row a > span { transition: color .28s ease, transform .45s cubic-bezier(.2, .7, .2, 1); }
+/* Each text element moves on its own; the hover rules below stagger them left to right. The colour waits until the
+   wipe reaches the text, both ways, so light text never sits on the light ground. */
+.work_row a > span { transition: color .12s ease .16s, transform .45s cubic-bezier(.2, .7, .2, 1); }
 
 .work_row-no { font-size: var(--fs-label); color: var(--text-3); font-variant-numeric: tabular-nums; }
 .work_row-name { font-size: var(--fs-title); font-weight: 600; letter-spacing: -.01em; color: var(--text); }
@@ -347,32 +364,32 @@ strong, b { font-weight: 600; color: var(--text); }
 
 /* Active row: keyboard focus everywhere, hover only with a real pointer (touch has no hover). */
 .work_row a:focus-visible { outline: none; }
-.work_row a:focus-visible::before { opacity: 1; transform: none; }
+.work_row a:focus-visible::before { transform: scaleY(1); }
 .work_row a:focus-visible > span { color: var(--row-hover-muted); }
 .work_row a:focus-visible .work_row-name,
 .work_row a:focus-visible .work_row-arrow { color: var(--row-hover-fg); }
 .work_row a:focus-visible .work_row-no { transform: translateX(6px); }
-.work_row a:focus-visible .work_row-name { transform: translateX(12px); transition-delay: 0s, 35ms; }
-.work_row a:focus-visible .work_row-what { transform: translateX(12px); transition-delay: 0s, 70ms; }
-.work_row a:focus-visible .work_row-status { transform: translateX(12px); transition-delay: 0s, 105ms; }
+.work_row a:focus-visible .work_row-name { transform: translateX(12px); transition-delay: .16s, 35ms; }
+.work_row a:focus-visible .work_row-what { transform: translateX(12px); transition-delay: .16s, 70ms; }
+.work_row a:focus-visible .work_row-status { transform: translateX(12px); transition-delay: .16s, 105ms; }
 .work_row a:focus-visible .work_row-arrow::after { animation: arrow-loop 1.2s infinite; }
 
 @media (hover: hover) and (pointer: fine) {
-    .work_row a:hover::before { opacity: 1; transform: none; }
+    .work_row a:hover::before { transform: scaleY(1); }
     .work_row a:hover > span { color: var(--row-hover-muted); }
     .work_row a:hover .work_row-name,
     .work_row a:hover .work_row-arrow { color: var(--row-hover-fg); }
     .work_row a:hover .work_row-no { transform: translateX(6px); }
-    .work_row a:hover .work_row-name { transform: translateX(12px); transition-delay: 0s, 35ms; }
-    .work_row a:hover .work_row-what { transform: translateX(12px); transition-delay: 0s, 70ms; }
-    .work_row a:hover .work_row-status { transform: translateX(12px); transition-delay: 0s, 105ms; }
+    .work_row a:hover .work_row-name { transform: translateX(12px); transition-delay: .16s, 35ms; }
+    .work_row a:hover .work_row-what { transform: translateX(12px); transition-delay: .16s, 70ms; }
+    .work_row a:hover .work_row-status { transform: translateX(12px); transition-delay: .16s, 105ms; }
     .work_row a:hover .work_row-arrow::after { animation: arrow-loop 1.2s infinite; }
 }
 
 /* Touch: a short flash on tap instead of a hover state. */
 @media (hover: none) {
-    .work_row a:active::before { opacity: 1; transform: none; transition-duration: .08s; }
-    .work_row a:active > span { color: var(--row-hover-muted); transition-duration: .08s; }
+    .work_row a:active::before { transform: scaleY(1); transition-duration: .08s; }
+    .work_row a:active > span { color: var(--row-hover-muted); transition-duration: .08s; transition-delay: 0s; }
     .work_row a:active .work_row-name,
     .work_row a:active .work_row-arrow { color: var(--row-hover-fg); }
 }
