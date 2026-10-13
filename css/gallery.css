@@ -6,10 +6,11 @@
 
 .gal_head { padding-top: 64px; padding-bottom: 16px; }
 .gal_back {
-    display: block; margin-bottom: 48px;
+    display: inline-block; margin-bottom: 48px;
     font-size: var(--fs-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--text-3);
+    color: var(--text-3); text-decoration: none; transition: color .2s ease;
 }
+.gal_back:hover { color: var(--accent); }
 .gal_title {
     font-size: clamp(32px, 4.4vw, 48px); line-height: 1.1; font-weight: 600; letter-spacing: -.02em;
     color: var(--text); max-width: 18ch;
@@ -40,8 +41,8 @@
     .gal_item:hover img { transform: scale(1.02); }
 }
 
-/* No footer and no links out (Petar, 13 Oct): the page ends with the last set. */
-.gal { padding-bottom: 96px; }
+.gal_foot { padding-top: 96px; padding-bottom: 96px; }
+.gal_foot a { color: var(--accent); text-underline-offset: 4px; }
 
 @media (max-width: 860px) {
     .gal_rows { display: block; columns: 2; column-gap: 8px; }
@@ -56,7 +57,7 @@
     .gal_back { margin-bottom: 32px; }
     .gal_rows { columns: 1; }
     .gal_set { padding-top: 56px; }
-    .gal { padding-bottom: 64px; }
+    .gal_foot { padding-top: 64px; padding-bottom: 64px; }
 }
 
 /* The viewer: a modal <dialog> (focus stays inside, Escape closes, focus goes back to the image that opened it).
