@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI imagery · Petar Živković</title>
+    <meta name="description" content="AI imagery of realistic products and people by Petar Živković: generated, art-directed and finished by hand.">
+    <!-- Made for job-application forms, not for search; the main page doesn't link here (intent/ai-imagery-gallery.md). -->
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f8f5f0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0e0f11" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="../favicon.ico?v=2" sizes="32x32">
+    <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+
+    <!-- Theme before first paint: the visitor's saved choice, else the OS setting. -->
+    <script>
+        (function () {
+            var t = null;
+            try { t = localStorage.getItem('theme'); } catch (e) {}
+            if (t !== 'light' && t !== 'dark') {
+                t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', t);
+            document.documentElement.classList.add('js');
+        })();
+    </script>
+
+    <!-- Geologica (variable, weight axis 100–900; the same files Google serves for any range), latin + latin-ext only. The @font-face rules are copied from
+         https://fonts.googleapis.com/css2?family=Geologica:wght@200..700&display=swap (v5, 1 Oct 2026),
+         so the page doesn't wait on that stylesheet. Text shows in the fallback font, then swaps. -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/geologica/v5/oY1l8evIr7j9P3TN9YwNAdyjzUyDKkKdAGOJh1UlCDUIhAIdhCZOn1fLsig7jfvCCPHZckUWE1lELWNN-w.woff2" as="font" type="font/woff2" crossorigin>
+    <style>
+        @font-face {
+            font-family: 'Geologica'; font-style: normal; font-weight: 100 900; font-display: swap;
+            src: url(https://fonts.gstatic.com/s/geologica/v5/oY1l8evIr7j9P3TN9YwNAdyjzUyDKkKdAGOJh1UlCDUIhAIdhCZOn1fLsig7jfvCCPHZckUWHVlELWNN-8tr.woff2) format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        @font-face {
+            font-family: 'Geologica'; font-style: normal; font-weight: 100 900; font-display: swap;
+            src: url(https://fonts.gstatic.com/s/geologica/v5/oY1l8evIr7j9P3TN9YwNAdyjzUyDKkKdAGOJh1UlCDUIhAIdhCZOn1fLsig7jfvCCPHZckUWE1lELWNN-w.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        /* Fallback scaled to Geologica's width (measured: +5.5% at 300, +2.6% at 600), so lines
+           don't re-wrap and the page doesn't jump when the web font arrives. */
+        @font-face {
+            font-family: 'Geologica Fallback'; font-weight: 100 500;
+            src: local('Arial'), local('ArialMT'), local('Helvetica'), local('Liberation Sans');
+            size-adjust: 105.5%;
+        }
+        @font-face {
+            font-family: 'Geologica Fallback'; font-weight: 600 900;
+            src: local('Arial Bold'), local('Arial-BoldMT'), local('Helvetica Bold'), local('Liberation Sans Bold');
+            size-adjust: 102.6%;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/style.css?v=1.2.70">
+    <link rel="stylesheet" href="../css/gallery.css?v=1.0.0">
+</head>
+<body>
+    <a class="skip" href="#gallery">Skip to the images</a>
+    <header class="gal_head wrap">
+        <!-- Plain text, not a link (Petar, 13 Oct): a reviewer who clicks away from a form link may not find the way back. -->
+        <p class="gal_back">Petar Živković <span aria-hidden="true">·</span> Brand &amp; Digital Designer</p>
+        <h1 class="gal_title">AI imagery: products and people</h1>
+        <p class="gal_intro">Realistic product and lifestyle imagery, generated in FLORA, art-directed and finished by hand in Affinity and Photoshop, 2026. Everyone pictured is AI-generated. Brands marked as concepts are unofficial and not affiliated.</p>
+        <p class="gal_count">32 images · click any image to view it large</p>
+    </header>
+    <main class="gal wrap" id="gallery" tabindex="-1">
+        <section class="gal_set" aria-labelledby="set-1">
+            <div class="gal_set-head">
+                <h2 class="gal_set-title" id="set-1">Level Bath Co.</h2>
+                <p class="gal_set-label">Spec · fictional brand · home-services ads</p>
+                <p class="gal_set-line">Snapshots a neighbour could have taken: flash for the install, window light for living in it. In every shot the floor runs level into the shower, as a walk-in conversion should. Nano Banana Pro finals, graded in Affinity with film LUTs.</p>
+            </div>
+            <div class="gal_rows">
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/lb-s1-full.webp" style="--r: 0.7462" data-w="1792" data-h="2400"><img src="../images/gallery/lb-s1-sm.webp" srcset="../images/gallery/lb-s1-sm.webp 597w, ../images/gallery/lb-s1-md.webp 1200w, ../images/gallery/lb-s1-full.webp 1792w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 290px" width="597" height="800" alt="An installer kneels on a half-tiled bathroom floor, laying a spirit level across the entrance of a walk-in shower, lit by a work lamp." decoding="async" fetchpriority="high"></a>
+                    <a class="gal_item" href="../images/gallery/lb-s2-full.webp" style="--r: 0.7462" data-w="1792" data-h="2400"><img src="../images/gallery/lb-s2-sm.webp" srcset="../images/gallery/lb-s2-sm.webp 597w, ../images/gallery/lb-s2-md.webp 1200w, ../images/gallery/lb-s2-full.webp 1792w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 290px" width="597" height="800" alt="An older couple in a bright bathroom, her hand on his back, looking into a curbless walk-in shower with a fold-down seat." decoding="async" ></a>
+                    <a class="gal_item" href="../images/gallery/lb-s3-full.webp" style="--r: 0.7462" data-w="1792" data-h="2400"><img src="../images/gallery/lb-s3-sm.webp" srcset="../images/gallery/lb-s3-sm.webp 597w, ../images/gallery/lb-s3-md.webp 1200w, ../images/gallery/lb-s3-full.webp 1792w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 290px" width="597" height="800" alt="A woman hangs a towel beside a glass-walled walk-in shower in soft window light." decoding="async" ></a>
+                    <a class="gal_item" href="../images/gallery/lb-s4-full.webp" style="--r: 0.7462" data-w="1792" data-h="2400"><img src="../images/gallery/lb-s4-sm.webp" srcset="../images/gallery/lb-s4-sm.webp 597w, ../images/gallery/lb-s4-md.webp 1200w, ../images/gallery/lb-s4-full.webp 1792w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 290px" width="597" height="800" alt="Flash-lit close-up of a bare foot stepping flat into a tiled walk-in shower, one hand on the grab bar." decoding="async" ></a>
+                </div>
+            </div>
+        </section>
+        <section class="gal_set" aria-labelledby="set-2">
+            <div class="gal_set-head">
+                <h2 class="gal_set-title" id="set-2">Puffy Lux</h2>
+                <p class="gal_set-label">Made for a Puffy hiring brief · not affiliated with Puffy</p>
+                <p class="gal_set-line">The hero and ad imagery for the Lux Hybrid, then three room styles from one camera angle. Every mattress detail (badge, label, corner caps, straps) went in as its own reference, so the small print came out right.</p>
+            </div>
+            <div class="gal_rows">
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/puffy-hero-full.webp" style="--r: 0.8000" data-w="1792" data-h="2240"><img src="../images/gallery/puffy-hero-sm.webp" srcset="../images/gallery/puffy-hero-sm.webp 640w, ../images/gallery/puffy-hero-md.webp 1200w, ../images/gallery/puffy-hero-full.webp 1792w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 230px" width="640" height="800" alt="A Puffy Lux Hybrid mattress, front-on, on a cream upholstered bed with a rattan headboard, a monstera beside it." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/puffy-ad-full.webp" style="--r: 0.8050" data-w="1856" data-h="2304"><img src="../images/gallery/puffy-ad-sm.webp" srcset="../images/gallery/puffy-ad-sm.webp 644w, ../images/gallery/puffy-ad-md.webp 1200w, ../images/gallery/puffy-ad-full.webp 1856w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 232px" width="644" height="800" alt="A woman in beige loungewear resting on a Puffy Lux Hybrid mattress in a warm room with a rattan headboard." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/puffy-japandi-full.webp" style="--r: 0.8000" data-w="1792" data-h="2240"><img src="../images/gallery/puffy-japandi-sm.webp" srcset="../images/gallery/puffy-japandi-sm.webp 640w, ../images/gallery/puffy-japandi-md.webp 1200w, ../images/gallery/puffy-japandi-full.webp 1792w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 230px" width="640" height="800" alt="The Puffy Lux mattress on a low oak platform in a beige Japandi bedroom with a paper lantern and a branch in a vase." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/puffy-wabi-full.webp" style="--r: 0.8000" data-w="1792" data-h="2240"><img src="../images/gallery/puffy-wabi-sm.webp" srcset="../images/gallery/puffy-wabi-sm.webp 640w, ../images/gallery/puffy-wabi-md.webp 1200w, ../images/gallery/puffy-wabi-full.webp 1792w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 230px" width="640" height="800" alt="The Puffy Lux mattress on a concrete plinth against a plaster wall, lit by a glowing stone sconce." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/puffy-moody-full.webp" style="--r: 0.8000" data-w="1792" data-h="2240"><img src="../images/gallery/puffy-moody-sm.webp" srcset="../images/gallery/puffy-moody-sm.webp 640w, ../images/gallery/puffy-moody-md.webp 1200w, ../images/gallery/puffy-moody-full.webp 1792w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 230px" width="640" height="800" alt="The Puffy Lux mattress on a black velvet bed in a dark panelled room under a brass chandelier." decoding="async" loading="lazy"></a>
+                </div>
+            </div>
+        </section>
+        <section class="gal_set" aria-labelledby="set-3">
+            <div class="gal_set-head">
+                <h2 class="gal_set-title" id="set-3">Q-Renew Scalp Serum</h2>
+                <p class="gal_set-label">Unofficial concept · not affiliated with Qure</p>
+                <p class="gal_set-line">A made-up companion product in Qure’s own pack system, on model and on set: a launch shot, then morning and night in the same light through the same blinds. The small pack text the models garbled was put back from the carton artwork.</p>
+            </div>
+            <div class="gal_rows">
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/qr-man-full.webp" style="--r: 0.8050" data-w="1856" data-h="2304"><img src="../images/gallery/qr-man-sm.webp" srcset="../images/gallery/qr-man-sm.webp 644w, ../images/gallery/qr-man-md.webp 1200w, ../images/gallery/qr-man-full.webp 1856w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 389px" width="644" height="800" alt="A man sitting on his bed in warm evening light drips the serum onto his parting, the black Q-Renew bottle in his other hand." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/qr-woman-full.webp" style="--r: 0.8050" data-w="1856" data-h="2304"><img src="../images/gallery/qr-woman-sm.webp" srcset="../images/gallery/qr-woman-sm.webp 644w, ../images/gallery/qr-woman-md.webp 1200w, ../images/gallery/qr-woman-full.webp 1856w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 389px" width="644" height="800" alt="A grey-haired woman on a wooden stool works the serum into her scalp beside a travertine basin, the Q-Renew bottle and carton on the ledge." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/qr-red-full.webp" style="--r: 0.8050" data-w="1856" data-h="2304"><img src="../images/gallery/qr-red-sm.webp" srcset="../images/gallery/qr-red-sm.webp 644w, ../images/gallery/qr-red-md.webp 1200w, ../images/gallery/qr-red-full.webp 1856w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 389px" width="644" height="800" alt="A black dropper bottle and its charcoal Q-Renew carton against a deep red glow." decoding="async" loading="lazy"></a>
+                </div>
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/qr-morning-full.webp" style="--r: 1.0000" data-w="2048" data-h="2048"><img src="../images/gallery/qr-morning-sm.webp" srcset="../images/gallery/qr-morning-sm.webp 800w, ../images/gallery/qr-morning-md.webp 1200w, ../images/gallery/qr-morning-full.webp 2048w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 494px" width="800" height="800" alt="The Q-Renew bottle and carton on travertine, with morning light falling through blinds onto a warm wall." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/qr-noir-full.webp" style="--r: 0.8050" data-w="928" data-h="1152"><img src="../images/gallery/qr-noir-sm.webp" srcset="../images/gallery/qr-noir-sm.webp 644w, ../images/gallery/qr-noir-md.webp 928w, ../images/gallery/qr-noir-full.webp 928w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 398px" width="644" height="800" alt="Bird’s-eye view of the black dropper bottle on rumpled sheets in venetian-blind shadows, a hair-growth helmet in the corner." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/qr-studio-full.webp" style="--r: 0.5587" data-w="1340" data-h="2400"><img src="../images/gallery/qr-studio-sm.webp" srcset="../images/gallery/qr-studio-sm.webp 447w, ../images/gallery/qr-studio-md.webp 1200w, ../images/gallery/qr-studio-full.webp 1340w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 276px" width="447" height="800" alt="The Q-Renew bottle with a charcoal carton and a white carton on a taupe studio set." decoding="async" loading="lazy"></a>
+                </div>
+            </div>
+        </section>
+        <section class="gal_set" aria-labelledby="set-4">
+            <div class="gal_set-head">
+                <h2 class="gal_set-title" id="set-4">Vidova, Bol</h2>
+                <p class="gal_set-label">Spec · fictional hotel on Brač</p>
+                <p class="gal_set-line">A stone hotel that doesn’t exist, for a hotel-group application: the terrace at blue hour and a suite in morning light. No signage, no logos.</p>
+            </div>
+            <div class="gal_rows">
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/vidova-hero-full.webp" style="--r: 0.8050" data-w="1856" data-h="2304"><img src="../images/gallery/vidova-hero-sm.webp" srcset="../images/gallery/vidova-hero-sm.webp 644w, ../images/gallery/vidova-hero-md.webp 1200w, ../images/gallery/vidova-hero-full.webp 1856w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 412px" width="644" height="800" alt="A stone hotel at blue hour above an infinity-pool terrace with loungers and olive trees, the sea and a pebble spit behind." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/vidova-suite-full.webp" style="--r: 1.4912" data-w="2400" data-h="1610"><img src="../images/gallery/vidova-suite-sm.webp" srcset="../images/gallery/vidova-suite-sm.webp 1193w, ../images/gallery/vidova-suite-md.webp 1200w, ../images/gallery/vidova-suite-full.webp 2400w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 764px" width="1193" height="800" alt="A stone-walled hotel suite with a linen bed, wooden shutters and an open window onto the sea, morning light striping the floor." decoding="async" loading="lazy"></a>
+                </div>
+            </div>
+        </section>
+        <section class="gal_set" aria-labelledby="set-5">
+            <div class="gal_set-head">
+                <h2 class="gal_set-title" id="set-5">Golden Hours</h2>
+                <p class="gal_set-label">Speculative concept · not affiliated with Manor AG</p>
+                <p class="gal_set-line">A Christmas key visual for a department store: generated, then recomposed and finished by hand. The wide master is the one source every format was cut from.</p>
+            </div>
+            <div class="gal_rows">
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/manor-master-full.webp" style="--r: 2.3575" data-w="2400" data-h="1018"><img src="../images/gallery/manor-master-sm.webp" srcset="../images/gallery/manor-master-sm.webp 1886w, ../images/gallery/manor-master-md.webp 1200w, ../images/gallery/manor-master-full.webp 2400w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 877px" width="1886" height="800" alt="A woman in a burgundy coat and cream scarf stands on a giant gold bauble on a still, misty lake at golden hour, frosted reeds on the left and two small gifts on the water." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/manor-portrait-full.webp" style="--r: 0.8050" data-w="928" data-h="1152"><img src="../images/gallery/manor-portrait-sm.webp" srcset="../images/gallery/manor-portrait-sm.webp 644w, ../images/gallery/manor-portrait-md.webp 928w, ../images/gallery/manor-portrait-full.webp 928w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 299px" width="644" height="800" alt="The same woman, side-on, on a gold bauble under a tall pastel winter sky." decoding="async" loading="lazy"></a>
+                </div>
+            </div>
+        </section>
+        <section class="gal_set" aria-labelledby="set-6">
+            <div class="gal_set-head">
+                <h2 class="gal_set-title" id="set-6">Silvarra Blue Ridge</h2>
+                <p class="gal_set-label">Mountain cabin rental · AI stand-ins for the website</p>
+                <p class="gal_set-line">One scene for each kind of stay the cabins host: a wedding and a birthday, wellness days, the pool, a private chef and evenings by the fire. The same black cabins, decks and Blue Ridge views carry through, so the set reads as one place.</p>
+            </div>
+            <div class="gal_rows">
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/sv-wedding-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-wedding-sm.webp" srcset="../images/gallery/sv-wedding-sm.webp 1344w, ../images/gallery/sv-wedding-md.webp 1200w, ../images/gallery/sv-wedding-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="Seen from above at golden hour, a couple marries under a floral arch on the deck of a black cabin, guests raising glasses, mountains behind." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/sv-birthday-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-birthday-sm.webp" srcset="../images/gallery/sv-birthday-sm.webp 1344w, ../images/gallery/sv-birthday-md.webp 1200w, ../images/gallery/sv-birthday-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="Friends gather round a birthday cake and balloons at a long table on a covered deck above the forest." decoding="async" loading="lazy"></a>
+                </div>
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/sv-sauna-full.webp" style="--r: 1.3700" data-w="1184" data-h="864"><img src="../images/gallery/sv-sauna-sm.webp" srcset="../images/gallery/sv-sauna-sm.webp 1096w, ../images/gallery/sv-sauna-md.webp 1184w, ../images/gallery/sv-sauna-full.webp 1184w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 461px" width="1096" height="800" alt="A couple in white robes with mugs relax on loungers on a deck beside a steaming barrel sauna in the pines." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/sv-hottub-full.webp" style="--r: 1.3700" data-w="1184" data-h="864"><img src="../images/gallery/sv-hottub-sm.webp" srcset="../images/gallery/sv-hottub-sm.webp 1096w, ../images/gallery/sv-hottub-md.webp 1184w, ../images/gallery/sv-hottub-full.webp 1184w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 461px" width="1096" height="800" alt="A woman rests her arms on the edge of a hot tub on a timber deck, looking out over misty autumn hills." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/sv-trail-full.webp" style="--r: 0.7300" data-w="864" data-h="1184"><img src="../images/gallery/sv-trail-sm.webp" srcset="../images/gallery/sv-trail-sm.webp 584w, ../images/gallery/sv-trail-md.webp 864w, ../images/gallery/sv-trail-full.webp 864w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 246px" width="584" height="800" alt="Two hikers with backpacks walk a forest trail away from a black cabin on stilts in the trees." decoding="async" loading="lazy"></a>
+                </div>
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/sv-massage-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-massage-sm.webp" srcset="../images/gallery/sv-massage-sm.webp 1344w, ../images/gallery/sv-massage-md.webp 1200w, ../images/gallery/sv-massage-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="A therapist gives an outdoor massage under a timber pergola beside a fireplace and candles." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/sv-coffee-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-coffee-sm.webp" srcset="../images/gallery/sv-coffee-sm.webp 1344w, ../images/gallery/sv-coffee-md.webp 1200w, ../images/gallery/sv-coffee-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="A couple in white robes share coffee on a cabin deck high above a green valley." decoding="async" loading="lazy"></a>
+                </div>
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/sv-pool-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-pool-sm.webp" srcset="../images/gallery/sv-pool-sm.webp 1344w, ../images/gallery/sv-pool-md.webp 1200w, ../images/gallery/sv-pool-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="Friends throw a beach ball in a pool below a black cabin on a sunny day." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/sv-pool-edge-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-pool-edge-sm.webp" srcset="../images/gallery/sv-pool-edge-sm.webp 1344w, ../images/gallery/sv-pool-edge-md.webp 1200w, ../images/gallery/sv-pool-edge-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="A couple with drinks sit on the edge of a pool, smiling, the forest and far ridges behind." decoding="async" loading="lazy"></a>
+                </div>
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/sv-chef-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-chef-sm.webp" srcset="../images/gallery/sv-chef-sm.webp 1344w, ../images/gallery/sv-chef-md.webp 1200w, ../images/gallery/sv-chef-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="A private chef plates dinner at a marble kitchen island while a couple watches, mountain views through the windows." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/sv-smores-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-smores-sm.webp" srcset="../images/gallery/sv-smores-sm.webp 1344w, ../images/gallery/sv-smores-md.webp 1200w, ../images/gallery/sv-smores-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="Five friends toast marshmallows around a fire bowl in front of a glowing A-frame cabin at dusk." decoding="async" loading="lazy"></a>
+                </div>
+                <div class="gal_row">
+                    <a class="gal_item" href="../images/gallery/sv-movie-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-movie-sm.webp" srcset="../images/gallery/sv-movie-sm.webp 1344w, ../images/gallery/sv-movie-md.webp 1200w, ../images/gallery/sv-movie-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="A family watches a film on the sofa by a stone fireplace in a timber-ceilinged living room." decoding="async" loading="lazy"></a>
+                    <a class="gal_item" href="../images/gallery/sv-wine-full.webp" style="--r: 1.7500" data-w="1344" data-h="768"><img src="../images/gallery/sv-wine-sm.webp" srcset="../images/gallery/sv-wine-sm.webp 1344w, ../images/gallery/sv-wine-md.webp 1200w, ../images/gallery/sv-wine-full.webp 1344w" sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 588px" width="1344" height="768" alt="Two hands clink glasses of red wine on a deck strung with fairy lights at dusk." decoding="async" loading="lazy"></a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="gal_foot wrap">
+        <a href="../">See the full portfolio</a>
+    </footer>
+
+    <dialog class="gal_box" aria-label="Image viewer">
+        <figure class="gal_box-fig">
+            <img class="gal_box-img" alt="">
+            <figcaption class="gal_box-cap"><span class="gal_box-set"></span><span class="gal_box-no"></span></figcaption>
+        </figure>
+        <button class="gal_box-btn gal_box-prev" type="button" aria-label="Previous image"><span aria-hidden="true">←</span></button>
+        <button class="gal_box-btn gal_box-next" type="button" aria-label="Next image"><span aria-hidden="true">→</span></button>
+        <button class="gal_box-btn gal_box-close" type="button" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </dialog>
+    <script src="../js/gallery.js?v=1.0.0" defer></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+/* AI imagery gallery (ai-imagery/index.html, 13 Oct 2026). Sits on css/style.css for the tokens, type and theme.
+   Spacing on the 8px base. On desktop each row group is one band across the wrap: every image grows in proportion
+   to its aspect ratio (--r), so a band is one height and fills the width, whatever mix of portrait and panorama it
+   holds (site-tools/build-gallery-page.py sets the groups). Below 860 px the images fall into two columns at their
+   own proportions, and into one below 560. */
+
+.gal_head { padding-top: 64px; padding-bottom: 16px; }
+.gal_back {
+    display: block; margin-bottom: 48px;
+    font-size: var(--fs-label); font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-3);
+}
+.gal_title {
+    font-size: clamp(32px, 4.4vw, 48px); line-height: 1.1; font-weight: 600; letter-spacing: -.02em;
+    color: var(--text); max-width: 18ch;
+}
+.gal_intro { margin-top: 24px; max-width: 64ch; }
+.gal_count { margin-top: 16px; font-size: var(--fs-label); color: var(--text-3); }
+
+.gal:focus { outline: none; }
+.gal_set { padding-top: 80px; }
+.gal_set-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: 48px; row-gap: 8px; margin-bottom: 24px; }
+.gal_set-title { grid-column: 1; font-size: var(--fs-title); font-weight: 600; letter-spacing: -.01em; color: var(--text); line-height: 1.4; }
+.gal_set-label { grid-column: 1; font-size: var(--fs-label); color: var(--text-3); }
+.gal_set-line { grid-column: 2; grid-row: 1 / span 2; max-width: 64ch; }
+
+.gal_rows { display: grid; gap: 8px; }
+.gal_row { display: flex; gap: 8px; }
+.gal_item {
+    flex: var(--r) 1 0;
+    min-width: 0;
+    display: block; position: relative; overflow: hidden;
+    border-radius: 2px;
+    background: var(--board);
+    cursor: zoom-in;
+}
+.gal_item img { width: 100%; height: auto; transition: transform .6s cubic-bezier(.2, .7, .2, 1), opacity .3s ease; }
+.gal_item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) {
+    .gal_item:hover img { transform: scale(1.02); }
+}
+
+.gal_foot { padding-top: 96px; padding-bottom: 96px; }
+.gal_foot a { color: var(--accent); text-underline-offset: 4px; }
+
+@media (max-width: 860px) {
+    .gal_rows { display: block; columns: 2; column-gap: 8px; }
+    .gal_row { display: contents; }
+    .gal_item { break-inside: avoid; margin-bottom: 8px; }
+    .gal_set-head { grid-template-columns: minmax(0, 1fr); }
+    .gal_set-line { grid-column: 1; grid-row: auto; margin-top: 8px; }
+    .gal_set { padding-top: 64px; }
+}
+@media (max-width: 560px) {
+    .gal_head { padding-top: 40px; }
+    .gal_back { margin-bottom: 32px; }
+    .gal_rows { columns: 1; }
+    .gal_set { padding-top: 56px; }
+    .gal_foot { padding-top: 64px; padding-bottom: 64px; }
+}
+
+/* The viewer: a modal <dialog> (focus stays inside, Escape closes, focus goes back to the image that opened it).
+   Always dark, whatever the theme, so the image is the brightest thing on screen. */
+.gal_box {
+    position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+    border: 0; padding: 0; margin: 0;
+    background: #0a0a0b; color: #f2f2f0;
+    overscroll-behavior: contain;
+}
+.gal_box::backdrop { background: #0a0a0b; }
+.gal_box[open] { display: grid; place-items: center; animation: gal-in .25s ease; }
+@keyframes gal-in { from { opacity: 0; } }
+.gal_box-fig { display: grid; justify-items: center; gap: 16px; padding: 64px 88px 24px; max-width: 100%; max-height: 100%; }
+.gal_box-img {
+    max-width: 100%; max-height: calc(100vh - 136px); max-height: calc(100dvh - 136px);
+    width: auto; height: auto; object-fit: contain;
+    touch-action: pan-y;
+}
+.gal_box-cap { display: flex; gap: 16px; font-size: var(--fs-label); color: rgba(242, 242, 240, .72); }
+.gal_box-set { font-weight: 500; color: #f2f2f0; }
+.gal_box-btn {
+    position: absolute; width: 48px; height: 48px;
+    display: grid; place-items: center;
+    background: none; border: 0; border-radius: 2px;
+    color: #f2f2f0; font: 300 24px/1 var(--font); cursor: pointer;
+    transition: background-color .2s ease;
+}
+.gal_box-btn:hover { background: rgba(242, 242, 240, .12); }
+.gal_box-btn:focus-visible { outline: 2px solid #8fb0ff; outline-offset: 2px; }
+.gal_box-prev { left: 24px; top: 50%; translate: 0 -50%; }
+.gal_box-next { right: 24px; top: 50%; translate: 0 -50%; }
+.gal_box-close { right: 24px; top: 16px; font-size: 32px; }
+@media (max-width: 560px) {
+    .gal_box-fig { padding: 64px 0 88px; }
+    .gal_box-img { max-height: calc(100dvh - 176px); }
+    .gal_box-prev, .gal_box-next { top: auto; bottom: 16px; translate: none; }
+    .gal_box-prev { left: 16px; }
+    .gal_box-next { right: 16px; }
+    .gal_box-close { right: 8px; top: 8px; }
+    .gal_box-cap { padding: 0 16px; }
+}
