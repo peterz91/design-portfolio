@@ -556,13 +556,16 @@ strong, b { font-weight: 600; color: var(--text); }
 .case, .about { content-visibility: auto; contain-intrinsic-size: auto var(--ci, 2800px); }
 #stmnt-studios { --ci: 5000px; } #stmnt-wear { --ci: 3830px; } #derby-weekend { --ci: 2880px; }
 #ustedi { --ci: 3260px; } #ai-production { --ci: 3460px; } #experience { --ci: 910px; }
+#level-bath { --ci: 3470px; } #puffy { --ci: 3950px; }
 @media (max-width: 1024px) {
     #stmnt-studios { --ci: 5000px; } #stmnt-wear { --ci: 3270px; } #derby-weekend { --ci: 2510px; }
     #ustedi { --ci: 2820px; } #ai-production { --ci: 3180px; } #experience { --ci: 1110px; }
+    #level-bath { --ci: 3090px; } #puffy { --ci: 3440px; }
 }
 @media (max-width: 860px) {   /* one column: the images scale with the width, so the bound does too */
     #stmnt-studios { --ci: calc(4300px + 235.1vw); } #stmnt-wear { --ci: calc(2090px + 126.3vw); } #derby-weekend { --ci: calc(1810px + 261.6vw); }
     #ustedi { --ci: calc(1860px + 300.8vw); } #ai-production { --ci: calc(2630px + 45vw); } #experience { --ci: calc(2270px - 129.9vw); }
+    #level-bath { --ci: 2970px; } #puffy { --ci: 3130px; }
 }
 
 .case_head { margin-bottom: 48px; }
