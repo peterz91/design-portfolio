@@ -72,6 +72,7 @@
 @property --chip-on-text { syntax: '<color>'; inherits: true; initial-value: #fdfbf7; }
 @property --row-hover-bg { syntax: '<color>'; inherits: true; initial-value: #1c1814; }
 @property --row-hover-fg { syntax: '<color>'; inherits: true; initial-value: #fdfbf7; }
+@property --tab-clear { syntax: '<number>'; inherits: true; initial-value: 0; }
 @property --row-hover-muted { syntax: '<color>'; inherits: true; initial-value: rgba(253, 251, 247, .62); }
 @property --stack-bg { syntax: '<color>'; inherits: true; initial-value: #221c16; }
 @property --stack-hover { syntax: '<color>'; inherits: true; initial-value: #2e5bba; }
@@ -329,8 +330,11 @@ strong, b { font-weight: 600; color: var(--text); }
        way it came, into the top line. Ease-in-out: it eases off the line and into the end, both ways. */
     transform: scaleY(0);
     transform-origin: 50% 0;
-    transition: transform .36s cubic-bezier(.65, 0, .35, 1);
+    transition: transform .36s cubic-bezier(.65, 0, .35, 1), inset .3s cubic-bezier(.2, .7, .2, 1);
 }
+/* Once the rows start folding under each other, the bleed would show beside the row above: the block narrows to the
+   row's own width, the same as the row lines (Petar, 13 Oct). */
+.index.is-ready:is(.is-folding, .is-bar) .work_row a::before { inset: -1px 0; }
 /* Each text element moves on its own; the hover rules below stagger them left to right. The colour waits until the
    wipe reaches the text, both ways, so light text never sits on the light ground. */
 .work_row a > span { transition: color .12s ease .16s, transform .45s cubic-bezier(.2, .7, .2, 1); }
@@ -407,6 +411,11 @@ strong, b { font-weight: 600; color: var(--text); }
 .index_inner { position: relative; }
 
 .index.is-ready { position: sticky; top: 0; z-index: 20; height: var(--row-h); overflow-x: clip; }   /* the bar can never widen the page */
+/* The list keeps its full height while its rows fold away under the bar, so its box would sit invisibly over the top
+   of the page and swallow hover and clicks there (the case tool labels went missing, 13 Oct). Only the rows' links
+   and the bar take the pointer; everything else in the index lets it through. */
+.index.is-ready .index_inner { pointer-events: none; }
+.index.is-ready :is(.work_row a, .index_bar) { pointer-events: auto; }
 .index.is-ready .work_row { position: relative; background: var(--bg); }
 /* The bar's own line (below) stands in for the first row's line while the bar is up, and for all of them once
    they are folded: it starts and ends exactly on them. */
@@ -465,22 +474,51 @@ strong, b { font-weight: 600; color: var(--text); }
 }
 .index.is-bar .index_bar { visibility: visible; transition: none; }
 
-.index_tabs { list-style: none; display: flex; align-items: baseline; column-gap: var(--tab-gap, 32px); }
+/* Spacing on the 8px base (Petar, 13 Oct): the name sits 8px after its number; each tab's box (the hover block and the
+   underline) reaches --tab-pad past its text; tabs sit --tab-gap apart, text to text, so the blocks keep
+   --tab-gap − 2 × --tab-pad between them. js/script.js reads all three. */
+.index { --tab-pad: 16px; --tab-gap: 48px; --name-gap: 8px; }
+.index_tabs { list-style: none; display: flex; align-items: baseline; column-gap: var(--tab-gap); }
 .index_tab-item { position: relative; }
 /* Each tab is a small opaque card, so a tab behind another stays hidden until it comes out. */
 .index_tab {
+    position: relative; isolation: isolate;
     display: flex; align-items: baseline;
     height: calc(var(--bar-h) - 1px);
-    padding: 16px 10px 0; margin: 0 -10px;
+    padding: 16px var(--tab-pad) 0; margin: 0 calc(-1 * var(--tab-pad));
     background: var(--bg);
     color: var(--text-3); text-decoration: none; line-height: 1.6;
+    /* The number and name are opaque cards too; while the wipe is on they clear (--tab-clear: 1), so it shows
+       behind them, and they only fill in again once it has gone back up. */
+    --tab-clear: 0;
+    transition: --tab-clear 0s linear .36s;
 }
-.index_tab-no { font-size: var(--fs-label); font-variant-numeric: tabular-nums; background: var(--bg); transition: color .25s ease; }
-.index_tab-name { font-size: var(--fs-title); letter-spacing: -.01em; margin-left: 10px; font-weight: 600; white-space: nowrap; background: var(--bg); transition: color .25s ease; }
+/* Hover is the Selected Work row's wipe turned on its side (Petar, 13 Oct): a dark block grows in from the tab's
+   left edge and goes back the way it came, and the text flips as the block crosses it (the .16s colour delay above). */
+.index_tab::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: var(--row-hover-bg);
+    transform: scaleX(0); transform-origin: 0 50%;
+    transition: transform .36s cubic-bezier(.65, 0, .35, 1);
+}
+.index_tab-no { font-size: var(--fs-label); font-variant-numeric: tabular-nums; background: color-mix(in srgb, var(--bg) calc(100% - var(--tab-clear) * 100%), transparent); transition: color .12s ease .16s; }
+.index_tab-name { font-size: var(--fs-title); letter-spacing: -.01em; margin-left: var(--name-gap); font-weight: 600; white-space: nowrap; background: color-mix(in srgb, var(--bg) calc(100% - var(--tab-clear) * 100%), transparent); transition: color .12s ease .16s; }
 .index_tab[aria-current] .index_tab-name { color: var(--text); }
-/* Hover is the site's hover blue, the same as the chips, the icon stack and the case-title links. */
-.index_tab:hover :is(.index_tab-no, .index_tab-name) { color: var(--stack-hover); }
-.index_tab:focus-visible, .index_top:focus-visible { outline: 2px solid var(--accent); outline-offset: -6px; }
+.index_tab:focus-visible { outline: none; --tab-clear: 1; transition: none; }
+.index_tab:focus-visible::before { transform: scaleX(1); }
+.index_tab:focus-visible :is(.index_tab-no, .index_tab-name) { color: var(--row-hover-fg); }
+@media (hover: hover) and (pointer: fine) {
+    .index_tab:hover { --tab-clear: 1; transition: none; }
+    .index_tab:hover::before { transform: scaleX(1); }
+    .index_tab:hover :is(.index_tab-no, .index_tab-name) { color: var(--row-hover-fg); }
+}
+/* Touch: a short flash on tap, as on the rows. */
+@media (hover: none) {
+    .index_tab:active { --tab-clear: 1; transition: none; }
+    .index_tab:active::before { transform: scaleX(1); transition-duration: .08s; }
+    .index_tab:active :is(.index_tab-no, .index_tab-name) { color: var(--row-hover-fg); transition-delay: 0s; }
+}
+.index_top:focus-visible { outline: 2px solid var(--accent); outline-offset: -6px; }
 
 /* Where the full names don't fit, the tabs after the first use a short name ("Derby Weekend"). */
 .index.is-short .index_tab-item:not(.is-lead) .index_tab-more { display: none; }
@@ -488,12 +526,15 @@ strong, b { font-weight: 600; color: var(--text); }
 .index.is-compact .index_tab-name {
     display: inline-block; overflow: hidden; vertical-align: bottom;
     max-width: 0; margin-left: 0; opacity: 0;
-    transition: max-width .4s cubic-bezier(.2, .7, .2, 1), margin-left .4s cubic-bezier(.2, .7, .2, 1), opacity .2s ease, color .25s ease;
+    transition: max-width .4s cubic-bezier(.2, .7, .2, 1), margin-left .4s cubic-bezier(.2, .7, .2, 1), opacity .2s ease, color .12s ease .16s;
 }
 .index.is-compact .index_tab-item.is-open .index_tab-name {
-    max-width: var(--name-w); margin-left: 10px; opacity: 1; text-overflow: ellipsis;   /* --name-w is capped to the room beside "Top" */
-    transition: max-width .45s cubic-bezier(.2, .7, .2, 1), margin-left .45s cubic-bezier(.2, .7, .2, 1), opacity .3s ease .1s, color .25s ease;
+    max-width: var(--name-w); margin-left: var(--name-gap); opacity: 1;   /* --name-w is capped to the room beside "Top" */
+    transition: max-width .45s cubic-bezier(.2, .7, .2, 1), margin-left .45s cubic-bezier(.2, .7, .2, 1), opacity .3s ease .1s, color .12s ease .16s;
 }
+/* The name grows out clipped, never with an ellipsis (Petar, 13 Oct). Only where it truly can't fit beside "Top"
+   (js/script.js sets .is-cut) does its open end fade out over the last 24px. */
+.index.is-compact .index_tab-item.is-open.is-cut .index_tab-name { mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent); }
 
 /* The other tabs: hidden under the first one until their row folds; js/script.js slides them out from there. */
 .index_tab-item:not(.is-lead) { opacity: 0; }
@@ -505,9 +546,9 @@ strong, b { font-weight: 600; color: var(--text); }
 .index:not(.is-bar) .index_tab-item.is-lead .index_tab-name { color: var(--text); }
 .index:not(.is-bar) .index_tab-item.is-lead .index_tab-name { transition: translate .4s cubic-bezier(.4, 0, .2, 1) .1s, color .25s ease; }
 .index.is-bar .index_tab-item.is-lead .index_tab-name { translate: 0 0; }
-.index.is-bar:not(.is-compact) .index_tab-item.is-lead .index_tab-name { transition: translate .5s cubic-bezier(.2, .7, .2, 1), color .25s ease; }
+.index.is-bar:not(.is-compact) .index_tab-item.is-lead .index_tab-name { transition: translate .5s cubic-bezier(.2, .7, .2, 1), color .12s ease .16s; }
 .index.is-bar.is-compact .index_tab-item.is-lead .index_tab-name {
-    transition: translate .5s cubic-bezier(.2, .7, .2, 1), max-width .45s cubic-bezier(.2, .7, .2, 1), margin-left .45s cubic-bezier(.2, .7, .2, 1), opacity .2s ease, color .25s ease;
+    transition: translate .5s cubic-bezier(.2, .7, .2, 1), max-width .45s cubic-bezier(.2, .7, .2, 1), margin-left .45s cubic-bezier(.2, .7, .2, 1), opacity .2s ease, color .12s ease .16s;
 }
 
 /* "Top": the row's ↓ turns into ↑ and the label slides in beside it. */
@@ -969,9 +1010,12 @@ strong, b { font-weight: 600; color: var(--text); }
 /* "Top" moves focus to the hero (as following the link would); the hero itself needs no focus ring. */
 .hero:focus { outline: none; }
 
+@media (max-width: 860px) {
+    .index { --tab-pad: 8px; --tab-gap: 32px; }
+}
 @media (max-width: 560px) {
     .work_row-arrow { width: 16px; height: 16px; }
-    .index_tabs { --tab-gap: 18px; }
+    .index { --tab-pad: 8px; --tab-gap: 16px; }
     .index_top-label { display: none; }
     .index_top-arrow { width: 16px; height: 16px; }
 }

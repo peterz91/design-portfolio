@@ -327,7 +327,7 @@
         nav.after(spacer);
 
         let shown = [], shownTabs = [], cases = [], noW = [], nameW = [];
-        let rowH = 0, foldMax = 0, gap = 0, compact = false, tabX = [], tabW = [];
+        let rowH = 0, foldMax = 0, gap = 0, pad = 0, ng = 0, compact = false, tabX = [], tabW = [];
         let rowHs = [], foldFrom = [], foldTo = [];   // each row's height; when it starts folding; how far it travels
         let chains = [];   // per row: its spans, and the parts that close up toward the name as it folds
         let fTabs = 0, lastFrame = 0, instant = true;   // the fold as the tabs see it: eased toward the real one
@@ -337,8 +337,8 @@
         // Tab i's left edge and width, with tab `open` the only named one in the compact bar.
         function tabBox(i, open) {
             let x = 0;
-            for (let k = 0; k < i; k++) x += noW[k] + (!compact || k === open ? 10 + nameW[k] : 0) + gap;
-            return [x, noW[i] + (!compact || i === open ? 10 + nameW[i] : 0)];
+            for (let k = 0; k < i; k++) x += noW[k] + (!compact || k === open ? ng + nameW[k] : 0) + gap;
+            return [x, noW[i] + (!compact || i === open ? ng + nameW[i] : 0)];
         }
 
         function measure() {
@@ -416,7 +416,10 @@
             // Pick the widest layout that fits: full names, short names, or numbers plus the open tab's name.
             nav.classList.remove('is-short', 'is-compact');
             compact = false;
-            gap = parseFloat(getComputedStyle(tabList).columnGap) || 0;
+            const tcs = getComputedStyle(tabList);
+            gap = parseFloat(tcs.columnGap) || 0;
+            pad = parseFloat(tcs.getPropertyValue('--tab-pad')) || 0;     // the tab box past its text, each side
+            ng = parseFloat(tcs.getPropertyValue('--name-gap')) || 0;     // number to name
             const room = bar.clientWidth - top.offsetWidth - 16;
             const fullW = [], shortW = [];
             noW = []; nameW = [];
@@ -428,7 +431,7 @@
                 shortW.push(i && more ? fullW[i] - more.getBoundingClientRect().width : fullW[i]);
             });
             const sum = function (a) { return a.reduce(function (s, v) { return s + v; }, 0); };
-            const spread = sum(noW) + 10 * n + (n - 1) * gap;
+            const spread = sum(noW) + ng * n + (n - 1) * gap;
             if (spread + sum(fullW) <= room) {
                 nameW = fullW;
             } else if (spread + sum(shortW) <= room) {
@@ -436,7 +439,7 @@
                 nav.classList.add('is-short');
             } else {
                 // Only the open tab is named; if even that won't fit beside "Top", its name ends in an ellipsis.
-                const fit = room - (sum(noW) + 10 + (n - 1) * gap);
+                const fit = room - (sum(noW) + ng + (n - 1) * gap);
                 nameW = shortW.map(function (w) { return Math.max(0, Math.min(w, fit)); });
                 compact = true;
                 nav.classList.add('is-short', 'is-compact');
@@ -444,6 +447,7 @@
             shownTabs.forEach(function (t, i) {
                 t.style.setProperty('--i', i);
                 t.style.setProperty('--name-w', nameW[i] + 'px');
+                t.classList.toggle('is-cut', compact && nameW[i] < shortW[i] - .5);
                 t.style.zIndex = n - i;
             });
             shownTabs[0].classList.add('is-open');
@@ -452,7 +456,7 @@
             tabW = shownTabs.map(function (t, i) { return tabBox(i, 0)[1]; });
 
             // The first tab's name starts where the first row's name is.
-            nameFrom = rowName.offsetLeft - noW[0] - 10;
+            nameFrom = rowName.offsetLeft - noW[0] - ng;
             nav.style.setProperty('--name-from', nameFrom + 'px');
             nav.style.setProperty('--line-from', (inner.clientWidth - 2 * parseFloat(getComputedStyle(inner).paddingLeft)) / nav.clientWidth);
             if (isBar) setActive(active, true);
@@ -469,8 +473,9 @@
             mark.classList.toggle('is-on', i >= 0);
             if (i >= 0) {
                 const box = tabBox(i, i);
-                mark.style.setProperty('--mark-x', box[0] + 'px');
-                mark.style.setProperty('--mark-w', box[1]);
+                // The tab's box reaches --tab-pad past its text each side; the underline spans the box, as the hover block does.
+                mark.style.setProperty('--mark-x', (box[0] - pad) + 'px');
+                mark.style.setProperty('--mark-w', box[1] + 2 * pad);
             }
         }
 
@@ -489,7 +494,7 @@
         function enterBar() {
             // The underline starts from nothing under the first tab and draws in once the tabs are out.
             mark.style.transition = 'none';
-            mark.style.setProperty('--mark-x', '0px');
+            mark.style.setProperty('--mark-x', -pad + 'px');
             mark.style.setProperty('--mark-w', 0);
             void mark.offsetWidth;
             mark.style.transition = '';
