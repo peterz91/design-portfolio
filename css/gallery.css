@@ -40,8 +40,8 @@
     .gal_item:hover img { transform: scale(1.02); }
 }
 
-.gal_foot { padding-top: 96px; padding-bottom: 96px; }
-.gal_foot a { color: var(--accent); text-underline-offset: 4px; }
+/* No footer and no links out (Petar, 13 Oct): the page ends with the last set. */
+.gal { padding-bottom: 96px; }
 
 @media (max-width: 860px) {
     .gal_rows { display: block; columns: 2; column-gap: 8px; }
@@ -56,7 +56,7 @@
     .gal_back { margin-bottom: 32px; }
     .gal_rows { columns: 1; }
     .gal_set { padding-top: 56px; }
-    .gal_foot { padding-top: 64px; padding-bottom: 64px; }
+    .gal { padding-bottom: 64px; }
 }
 
 /* The viewer: a modal <dialog> (focus stays inside, Escape closes, focus goes back to the image that opened it).
