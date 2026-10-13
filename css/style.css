@@ -1007,6 +1007,10 @@ strong, b { font-weight: 600; color: var(--text); }
 
 /* The NDA note starts on the hero text's left edge: the last column of the shared grid (the only one on phones). */
 .work_note { grid-column: -2 / -1; margin: 14px 0 24px; font-size: var(--fs); color: var(--text-3); max-width: 72ch; }
+/* The way to the AI imagery gallery (Petar, 13 Oct): subtle, in the note's own colour, with a thin underline that
+   turns the hover blue. */
+.work_note-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .2s ease; }
+.work_note-link:hover { color: var(--accent); }
 /* "Top" moves focus to the hero (as following the link would); the hero itself needs no focus ring. */
 .hero:focus { outline: none; }
 
