@@ -234,6 +234,8 @@ strong, b { font-weight: 600; color: var(--text); }
 
 .hero_intro { margin-top: 12px; max-width: 64ch; color: var(--text-2); }
 .hero_intro p + p { margin-top: 8px; }
+/* The skills run (Petar, 18 Oct): items split by quiet slashes; each slash stays on the line of the item before it. */
+.hero_sep { color: var(--text-3); }
 
 
 
