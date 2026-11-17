@@ -599,16 +599,19 @@ strong, b { font-weight: 600; color: var(--text); }
 .case, .about { content-visibility: auto; contain-intrinsic-size: auto var(--ci, 2800px); }
 #stmnt-studios { --ci: 5000px; } #stmnt-wear { --ci: 3830px; } #derby-weekend { --ci: 2880px; }
 #ustedi { --ci: 3260px; } #ai-production { --ci: 3460px; } #experience { --ci: 910px; }
-#level-bath { --ci: 3470px; } #puffy { --ci: 3950px; }
+#level-bath { --ci: 3470px; } #puffy { --ci: 3950px; } #qure-skincare { --ci: 3890px; }
+#kvant { --ci: 6100px; }
 @media (max-width: 1024px) {
     #stmnt-studios { --ci: 5000px; } #stmnt-wear { --ci: 3270px; } #derby-weekend { --ci: 2510px; }
     #ustedi { --ci: 2820px; } #ai-production { --ci: 3180px; } #experience { --ci: 1110px; }
-    #level-bath { --ci: 3090px; } #puffy { --ci: 3440px; }
+    #level-bath { --ci: 3090px; } #puffy { --ci: 3440px; } #qure-skincare { --ci: 3415px; }
+    #kvant { --ci: 5250px; }
 }
 @media (max-width: 860px) {   /* one column: the images scale with the width, so the bound does too */
     #stmnt-studios { --ci: calc(4300px + 235.1vw); } #stmnt-wear { --ci: calc(2090px + 126.3vw); } #derby-weekend { --ci: calc(1810px + 261.6vw); }
     #ustedi { --ci: calc(1860px + 300.8vw); } #ai-production { --ci: calc(2630px + 45vw); } #experience { --ci: calc(2270px - 129.9vw); }
-    #level-bath { --ci: 2970px; } #puffy { --ci: 3130px; }
+    #level-bath { --ci: 2970px; } #puffy { --ci: 3130px; } #qure-skincare { --ci: calc(3220px + 143vw); }
+    #kvant { --ci: calc(3400px + 256vw); }
 }
 
 .case_head { margin-bottom: 48px; }
@@ -844,6 +847,23 @@ strong, b { font-weight: 600; color: var(--text); }
     background: #000;
 }
 
+/* The Qure story sits beside a 4:5 post in the two-up row, so there its stage takes the post's shape and the
+   video fills the stage's height (125cqw = the 4:5 height, less the 40px padding top and bottom). One column
+   (≤860) keeps the usual stage. */
+@media (min-width: 861px) {
+    #qure-skincare .shot:not(.is-wide) .shot_stage { aspect-ratio: 4 / 5; padding: 40px 0; container-type: inline-size; }
+    #qure-skincare .shot:not(.is-wide) .shot_stage video { width: auto; height: calc(125cqw - 80px); }
+}
+
+/* Kvant's LinkedIn post shares a row with the report clip. Its board is close to the clip's stage in shape, and here
+   it takes the row's height exactly (the image is contained on the board colour), so the two captions line up at
+   every width. One column (≤860) keeps the board's own shape (is-fit, --ar). */
+@media (min-width: 861px) {
+    #kvant .shot.is-pair { display: flex; flex-direction: column; }
+    #kvant .shot.is-pair .shot_link { flex: 1 1 auto; aspect-ratio: auto; }
+    #kvant .shot.is-pair .shot_link img { position: absolute; inset: 0; }
+}
+
 /* A wide video that carries its own background (the 16:9 ad). */
 .shot_media video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border: 1px solid var(--line); }
 
@@ -1021,7 +1041,7 @@ strong, b { font-weight: 600; color: var(--text); }
 }
 @media (max-width: 560px) {
     .work_row-arrow { width: 16px; height: 16px; }
-    .index { --tab-pad: 8px; --tab-gap: 16px; }
+    .index { --tab-pad: 4px; --tab-gap: 8px; }   /* nine tabs (round 40): 6/12 left the open name 46px at 390 and none at 320, where 09 ran into Top. 4 and 8 are on the 8px scale; each tab box is still 25px wide */
     .index_top-label { display: none; }
     .index_top-arrow { width: 16px; height: 16px; }
 }

@@ -439,7 +439,9 @@
                 nav.classList.add('is-short');
             } else {
                 // Only the open tab is named; if even that won't fit beside "Top", its name ends in an ellipsis.
-                const fit = room - (sum(noW) + ng + (n - 1) * gap);
+                // Under 24px (the width of the fade) a name would be a faded scrap, so the bar shows numbers only.
+                const left = room - (sum(noW) + ng + (n - 1) * gap);
+                const fit = left < 24 ? 0 : left;
                 nameW = shortW.map(function (w) { return Math.max(0, Math.min(w, fit)); });
                 compact = true;
                 nav.classList.add('is-short', 'is-compact');
@@ -572,7 +574,7 @@
                 const x = base + open + slot - room;                    // sits at the right edge of its opening place
                 open += slot;
                 const dx = x - tabX[i];
-                const hidden = base - gap + 10 - x;                   // the part still behind the first tab's card
+                const hidden = base - gap + Math.min(10, gap) - x;    // the part still behind the first tab's card (a tab that is fully out is never cut, however small the gap)
                 t.style.translate = Math.abs(dx) > 0.01 ? dx.toFixed(2) + 'px 0' : '';
                 t.style.clipPath = hidden > 0 ? 'inset(-2px -12px -2px ' + hidden.toFixed(2) + 'px)' : '';
                 t.style.opacity = p < 1 ? Math.min(p / 0.2, 1).toFixed(3) : '1';
